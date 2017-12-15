@@ -7,7 +7,7 @@ LoadTextDialog::LoadTextDialog( QWidget * parent, UserAccount* user_account) : Q
 
     connect(ui.loadTextByFileButton, SIGNAL (released()), this, SLOT (load_text_by_file()));
     connect(ui.loadTextButton, SIGNAL (released()), this, SLOT (load_text()));
-    connect(ui.closeTextButton, SIGNAL (released()), this, SLOT (close_text()));
+    connect(ui.closeTextButton, SIGNAL (released()), this, SLOT (close()));
 }
 
 void LoadTextDialog::load_text_by_file()
@@ -32,13 +32,7 @@ void LoadTextDialog::load_text_by_file()
 void LoadTextDialog::load_text()
 {
     QString text_contents = ui.loadTextEdit->toHtml();
-    UserDictionary* dict_now = this->user_account->GetDictionary(0);
-    ((MainWindow*)(parent()))->format_text(text_contents, dict_now);
+    ((MainWindow*)(parent()))->set_text(text_contents);
 
-    this->close();
-}
-
-void LoadTextDialog::close_text()
-{
-    this->close();
+    close();
 }

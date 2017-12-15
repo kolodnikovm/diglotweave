@@ -68,6 +68,7 @@ p, li { white-space: pre-wrap; }
      <string>Текст</string>
     </property>
     <addaction name="action_load_text"/>
+    <addaction name="action_change_params"/>
    </widget>
    <addaction name="menu_file"/>
    <addaction name="menu_user"/>
@@ -143,6 +144,11 @@ p, li { white-space: pre-wrap; }
   <action name="action_load_text">
    <property name="text">
     <string>Загрузить текст</string>
+   </property>
+  </action>
+  <action name="action_change_params">
+   <property name="text">
+    <string>Изменить параметры текста</string>
    </property>
   </action>
  </widget>

@@ -46,7 +46,6 @@ public:
     QVBoxLayout *verticalLayout_8;
     QTableWidget *dictContentTable;
     QHBoxLayout *horizontalLayout_5;
-    QPushButton *saveDictButton;
     QPushButton *closeDictButton;
 
     void setupUi(QDialog *DictDialog)
@@ -149,11 +148,6 @@ public:
 
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        saveDictButton = new QPushButton(DictDialog);
-        saveDictButton->setObjectName(QStringLiteral("saveDictButton"));
-
-        horizontalLayout_5->addWidget(saveDictButton);
-
         closeDictButton = new QPushButton(DictDialog);
         closeDictButton->setObjectName(QStringLiteral("closeDictButton"));
 
@@ -176,8 +170,7 @@ public:
         dictWordEdit->setPlaceholderText(QApplication::translate("DictDialog", "\321\201\320\273\320\276\320\262\320\276", Q_NULLPTR));
         dictTranslateEdit->setPlaceholderText(QApplication::translate("DictDialog", "\320\277\320\265\321\200\320\265\320\262\320\276\320\264", Q_NULLPTR));
         addWordButton->setText(QApplication::translate("DictDialog", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214 \321\201\320\273\320\276\320\262\320\276", Q_NULLPTR));
-        saveDictButton->setText(QApplication::translate("DictDialog", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214", Q_NULLPTR));
-        closeDictButton->setText(QApplication::translate("DictDialog", "\320\227\320\260\320\272\321\200\321\213\321\202\321\214 \320\261\320\265\320\267 \321\201\320\276\321\205\321\200\320\260\320\275\320\265\320\275\320\270\321\217", Q_NULLPTR));
+        closeDictButton->setText(QApplication::translate("DictDialog", "\320\227\320\260\320\272\321\200\321\213\321\202\321\214", Q_NULLPTR));
     } // retranslateUi
 
 };

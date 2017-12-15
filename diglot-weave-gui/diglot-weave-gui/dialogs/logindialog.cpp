@@ -6,7 +6,7 @@ LoginDialog::LoginDialog( QWidget * parent, UserAccount* user_account) : QDialog
     this->user_account = user_account;
 
     connect(ui.loginLoginButton, SIGNAL (released()), this, SLOT (make_login()));
-    connect(ui.loginCancelButton, SIGNAL (released()), this, SLOT (cancel()));
+    connect(ui.loginCancelButton, SIGNAL (released()), this, SLOT (close()));
 }
 
 void LoginDialog::make_login()
@@ -26,10 +26,5 @@ void LoginDialog::make_login()
     if(!logged_in)
         return utils::show_error("Был введён неверный логин и/или пароль.");
     else
-        this->close();
-}
-
-void LoginDialog::cancel()
-{
-    this->close();
+        close();
 }

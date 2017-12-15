@@ -19,7 +19,6 @@ public:
 public slots:
     void load_text_by_file();
     void load_text();
-    void close_text();
 
 private:
     Ui::LoadTextDialog ui;

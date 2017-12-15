@@ -4,7 +4,7 @@ RegisterDialog::RegisterDialog( QWidget * parent) : QDialog(parent) {
     ui.setupUi(this);
 
     connect(ui.registerRegisterButton, SIGNAL (released()), this, SLOT (make_register()));
-    connect(ui.registerCancelButton, SIGNAL (released()), this, SLOT (cancel()));
+    connect(ui.registerCancelButton, SIGNAL (released()), this, SLOT (close()));
 }
 
 void RegisterDialog::make_register()
@@ -26,10 +26,6 @@ void RegisterDialog::make_register()
     UserAccount user_account(0, email_value, login_value, hash_value);
 
     ((MainWindow*)(parent()))->userAccount = user_account;
-    this->close();
-}
 
-void RegisterDialog::cancel()
-{
-    this->close();
+    close();
 }

@@ -14,7 +14,6 @@ public:
 
 public slots:
     void make_login();
-    void cancel();
 
 private:
     Ui::LoginDialog ui;

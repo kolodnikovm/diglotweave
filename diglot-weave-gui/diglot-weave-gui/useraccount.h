@@ -17,6 +17,7 @@ private:
     QList<UserDictionary> dictionaries;
 
     bool verified;
+    int dict_id;
 
 public:
     bool logged_in;
@@ -27,7 +28,9 @@ public:
     bool LogIn(QString login, QString password);
     void VerifyAccount();
     void CreateDictionary(QString dict_name);
+    UserDictionary* GetDictionary();
     UserDictionary* GetDictionary(int dict_id);
+    void SetDictionary(int dict_id);
     int GetDictionariesCount();
     void DeleteDictionary(int dict_id);
 };

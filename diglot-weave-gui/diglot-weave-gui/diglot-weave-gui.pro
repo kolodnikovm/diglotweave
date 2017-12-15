@@ -37,7 +37,8 @@ SOURCES += \
     dialogs/loadtextdialog.cpp \
     usertextedit.cpp \
     userdictionary.cpp \
-    useraccount.cpp
+    useraccount.cpp \
+    dialogs/textparamsdialog.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -52,7 +53,8 @@ HEADERS += \
     usertextedit.h \
     dialogs/loadtextdialog.h \
     userdictionary.h \
-    useraccount.h
+    useraccount.h \
+    dialogs/textparamsdialog.h
 
 FORMS += \
         mainwindow.ui \
@@ -61,4 +63,5 @@ FORMS += \
     dialogs/logindialog.ui \
     dialogs/registerdialog.ui \
     dialogs/errordialog.ui \
-    dialogs/loadtextdialog.ui
+    dialogs/loadtextdialog.ui \
+    dialogs/textparamsdialog.ui

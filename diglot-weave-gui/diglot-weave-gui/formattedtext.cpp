@@ -55,9 +55,7 @@ void FormattedText::ReplaceWord(QString chosen_word)
         if(dict_now[i].GetTranslate() == chosen_word)
         {
             if(!dict_now[i].IsTranslated())
-            {
                 dict_now[i].Translate();
-            }
         }
     }
 }

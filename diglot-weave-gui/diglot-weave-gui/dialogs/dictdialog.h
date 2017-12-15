@@ -16,8 +16,6 @@ public:
 public slots:
     void add_dictionary();
     void add_word();
-    void save();
-    void close();
 
 private slots:
     void rewrite_list();

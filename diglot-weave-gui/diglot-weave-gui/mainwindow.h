@@ -20,7 +20,8 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
-    void format_text(QString loaded_text, UserDictionary* dict_now);
+    void set_text(QString loaded_text);
+    void set_dict(UserDictionary* dict_now);
 
     ~MainWindow();
 
@@ -31,6 +32,7 @@ public slots:
     void show_register_dialog();
     void show_dict_dialog();
     void show_load_text_dialog();
+    void show_params_dialog();
     void show_about_dialog();
 
     void close();

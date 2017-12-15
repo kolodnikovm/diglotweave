@@ -7,7 +7,6 @@ DictDialog::DictDialog( QWidget * parent, UserAccount* user_account) : QDialog(p
 
     connect(ui.addDictButton, SIGNAL (released()), this, SLOT (add_dictionary()));
     connect(ui.addWordButton, SIGNAL (released()), this, SLOT (add_word()));
-    connect(ui.saveDictButton, SIGNAL (released()), this, SLOT (save()));
     connect(ui.closeDictButton, SIGNAL (released()), this, SLOT (close()));
 
     connect(ui.dictList, SIGNAL (itemSelectionChanged()), this, SLOT (rewrite_table()));
@@ -63,14 +62,4 @@ void DictDialog::rewrite_table()
         QTableWidgetItem *translate_item = new QTableWidgetItem(translate_value);
         ui.dictContentTable->setItem(word_index, 1, translate_item);
     }
-}
-
-void DictDialog::save()
-{
-    this->close();
-}
-
-void DictDialog::close()
-{
-    this->close();
 }

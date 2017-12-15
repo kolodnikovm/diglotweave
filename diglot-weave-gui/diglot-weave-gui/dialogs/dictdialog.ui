@@ -113,16 +113,9 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_5">
      <item>
-      <widget class="QPushButton" name="saveDictButton">
-       <property name="text">
-        <string>Сохранить</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="closeDictButton">
        <property name="text">
-        <string>Закрыть без сохранения</string>
+        <string>Закрыть</string>
        </property>
       </widget>
      </item>
