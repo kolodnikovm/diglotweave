@@ -32,7 +32,6 @@ SOURCES += \
     dialogs/dictdialog.cpp \
     dialogs/logindialog.cpp \
     dialogs/registerdialog.cpp \
-    dialogs/errordialog.cpp \
     utils.cpp \
     dialogs/loadtextdialog.cpp \
     usertextedit.cpp \
@@ -49,7 +48,6 @@ HEADERS += \
     dialogs/dictdialog.h \
     dialogs/logindialog.h \
     dialogs/registerdialog.h \
-    dialogs/errordialog.h \
     utils.h \
     usertextedit.h \
     dialogs/loadtextdialog.h \
@@ -64,6 +62,5 @@ FORMS += \
     dialogs/dictdialog.ui \
     dialogs/logindialog.ui \
     dialogs/registerdialog.ui \
-    dialogs/errordialog.ui \
     dialogs/loadtextdialog.ui \
     dialogs/textparamsdialog.ui

@@ -42,8 +42,8 @@ QString utils::generate_password_hash(QString password)
 
 void utils::show_error(QString error_msg)
 {
-    ErrorDialog* errorDialog = new ErrorDialog();
-    errorDialog->show_msg(error_msg);
+    QErrorMessage* error_message = new QErrorMessage();
+    error_message->showMessage(error_msg);
 }
 
 double utils::get_doubled_random()

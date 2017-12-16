@@ -4,8 +4,7 @@
 #include <QString>
 #include <QRegExp>
 #include <QCryptographicHash>
-
-#include "dialogs/errordialog.h"
+#include <QErrorMessage>
 
 class utils
 {

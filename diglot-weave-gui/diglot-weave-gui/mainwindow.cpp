@@ -34,15 +34,19 @@ void MainWindow::show_login_dialog()
         LoginDialog* loginDialog = new LoginDialog(this, &(this->userAccount));
         loginDialog->show();
     }
+    else
+        utils::show_error("Вы уже авторизованы.");
 }
 
 void MainWindow::show_register_dialog()
 {
-    if(!this->userAccount.registered)
+    if(!this->userAccount.logged_in)
     {
         RegisterDialog* registerDialog = new RegisterDialog(this);
         registerDialog->show();
     }
+    else
+        utils::show_error("Вы уже авторизованы.");
 }
 
 void MainWindow::show_dict_dialog()
@@ -53,6 +57,8 @@ void MainWindow::show_dict_dialog()
                                                 this->formattedText, this->userTextEdit);
         dictDialog->show();
     }
+    else
+        utils::show_error("Вы ещё не прошли процедуру авторизации.");
 }
 
 void MainWindow::show_load_text_dialog()
@@ -63,6 +69,8 @@ void MainWindow::show_load_text_dialog()
                                                             this->formattedText, this->userTextEdit);
         loadTextDialog->show();
     }
+    else
+        utils::show_error("Вы ещё не прошли процедуру авторизации.");
 }
 
 void MainWindow::show_params_dialog()
@@ -73,6 +81,8 @@ void MainWindow::show_params_dialog()
                                                                   this->formattedText, this->userTextEdit);
         textParamsDialog->show();
     }
+    else
+        utils::show_error("Вы ещё не прошли процедуру авторизации.");
 }
 
 void MainWindow::show_about_dialog()
