@@ -29,6 +29,7 @@ public:
 public slots:
     void show_login_dialog();
     void show_register_dialog();
+    void show_restore_pass_dialog();
     void show_dict_dialog();
     void show_load_text_dialog();
     void show_params_dialog();

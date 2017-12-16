@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "ui_logindialog.h"
 #include "useraccount.h"
+#include "mainwindow.h"
 #include "utils.h"
 
 class LoginDialog : public QDialog {
@@ -14,6 +15,8 @@ public:
 
 public slots:
     void make_login();
+    void show_register_dialog();
+    void show_restore_password_dialog();
 
 private:
     Ui::LoginDialog ui;

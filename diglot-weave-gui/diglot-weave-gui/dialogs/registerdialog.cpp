@@ -26,6 +26,7 @@ void RegisterDialog::make_register()
     UserAccount user_account(0, email_value, login_value, hash_value);
 
     ((MainWindow*)(parent()))->userAccount = user_account;
+    ((MainWindow*)(parent()))->show_login_dialog();
 
     close();
 }

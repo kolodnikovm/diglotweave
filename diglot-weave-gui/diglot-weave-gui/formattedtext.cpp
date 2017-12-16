@@ -68,6 +68,8 @@ void FormattedText::FormatText()
 {
     for(int i = 0, len = this->word_list.size(); i < len; ++i)
     {
+        this->word_list[i].Reset();
+
         QString word_now = this->word_list[i].GetWord();
         bool highlighted = false;
 
@@ -89,8 +91,6 @@ void FormattedText::FormatText()
 
         if(highlighted)
             this->word_list[i].Highlight();
-        else
-            this->word_list[i].UnHighlight();
     }
 }
 

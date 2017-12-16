@@ -49,14 +49,6 @@ p, li { white-space: pre-wrap; }
     </property>
     <addaction name="action_exit"/>
    </widget>
-   <widget class="QMenu" name="menu_user">
-    <property name="title">
-     <string>Пользователь</string>
-    </property>
-    <addaction name="action_login"/>
-    <addaction name="action_reg"/>
-    <addaction name="action_dict"/>
-   </widget>
    <widget class="QMenu" name="menu_about">
     <property name="title">
      <string>Справка</string>
@@ -65,13 +57,22 @@ p, li { white-space: pre-wrap; }
    </widget>
    <widget class="QMenu" name="menu_text">
     <property name="title">
-     <string>Текст</string>
+     <string>Пользователь</string>
     </property>
+    <addaction name="action_dict"/>
     <addaction name="action_load_text"/>
     <addaction name="action_change_params"/>
    </widget>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Аккаунт</string>
+    </property>
+    <addaction name="action_login"/>
+    <addaction name="action_reg"/>
+    <addaction name="action_restore_pass"/>
+   </widget>
    <addaction name="menu_file"/>
-   <addaction name="menu_user"/>
+   <addaction name="menu"/>
    <addaction name="menu_text"/>
    <addaction name="menu_about"/>
   </widget>
@@ -93,7 +94,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="action_exit">
    <property name="text">
-    <string>Выход</string>
+    <string>Закрыть</string>
    </property>
   </action>
   <action name="action_reg">
@@ -123,7 +124,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="action_dict">
    <property name="text">
-    <string>Словари</string>
+    <string>Редактировать словари</string>
    </property>
   </action>
   <action name="action_login">
@@ -149,6 +150,16 @@ p, li { white-space: pre-wrap; }
   <action name="action_change_params">
    <property name="text">
     <string>Изменить параметры текста</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="text">
+    <string>Редактировать словари</string>
+   </property>
+  </action>
+  <action name="action_restore_pass">
+   <property name="text">
+    <string>Восстановление пароля</string>
    </property>
   </action>
  </widget>

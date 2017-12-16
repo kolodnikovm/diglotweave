@@ -63,7 +63,9 @@ void WordRecord::Highlight()
     this->highlighted = true;
 }
 
-void WordRecord::UnHighlight()
+void WordRecord::Reset()
 {
     this->highlighted = false;
+    this->translated = false;
+    this->has_translate = false;
 }
