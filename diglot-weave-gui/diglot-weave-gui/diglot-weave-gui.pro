@@ -38,7 +38,8 @@ SOURCES += \
     usertextedit.cpp \
     userdictionary.cpp \
     useraccount.cpp \
-    dialogs/textparamsdialog.cpp
+    dialogs/textparamsdialog.cpp \
+    wordrecord.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -54,7 +55,8 @@ HEADERS += \
     dialogs/loadtextdialog.h \
     userdictionary.h \
     useraccount.h \
-    dialogs/textparamsdialog.h
+    dialogs/textparamsdialog.h \
+    wordrecord.h
 
 FORMS += \
         mainwindow.ui \

@@ -6,13 +6,15 @@
 #include "ui_dictdialog.h"
 #include "userdictionary.h"
 #include "useraccount.h"
-#include "mainwindow.h"
+#include "formattedtext.h"
+#include "usertextedit.h"
 
 class DictDialog : public QDialog {
     Q_OBJECT
 
 public:
-    DictDialog( QWidget * parent = 0, UserAccount* user_account = 0);
+    DictDialog( QWidget * parent = 0, UserAccount* user_account = 0,
+                FormattedText* formatted_text = 0, UserTextEdit* usertextedit = 0);
 
 public slots:
     void add_dictionary();
@@ -26,6 +28,8 @@ private slots:
 private:
     Ui::DictDialog ui;
     UserAccount* user_account;
+    FormattedText* formatted_text;
+    UserTextEdit* usertextedit;
 };
 
 #endif // DICTDIALOG_H

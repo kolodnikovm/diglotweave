@@ -2,6 +2,12 @@
 
 utils::utils( ){ }
 
+const QString utils::text_open_tag = QString("<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">");
+const QString utils::text_close_tag = QString("</p>");
+
+const QString utils::highlight_open_tag = QString("<span style=\" font-weight:600; color:#ef2929;\">");
+const QString utils::highlight_close_tag = QString("</span>");
+
 bool utils::is_input_valid(QString input)
 {
     QRegExp re("\\w*");
@@ -38,4 +44,9 @@ void utils::show_error(QString error_msg)
 {
     ErrorDialog* errorDialog = new ErrorDialog();
     errorDialog->show_msg(error_msg);
+}
+
+double utils::get_doubled_random()
+{
+    return double(qrand()) / double(RAND_MAX);
 }

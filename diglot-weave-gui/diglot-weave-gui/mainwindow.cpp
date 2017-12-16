@@ -49,7 +49,8 @@ void MainWindow::show_dict_dialog()
 {
     if(this->userAccount.logged_in)
     {
-        DictDialog* dictDialog = new DictDialog(this, &(this->userAccount));
+        DictDialog* dictDialog = new DictDialog(this, &(this->userAccount),
+                                                this->formattedText, this->userTextEdit);
         dictDialog->show();
     }
 }
@@ -58,7 +59,8 @@ void MainWindow::show_load_text_dialog()
 {
     if(this->userAccount.logged_in)
     {
-        LoadTextDialog* loadTextDialog = new LoadTextDialog(this, &(this->userAccount));
+        LoadTextDialog* loadTextDialog = new LoadTextDialog(this, &(this->userAccount),
+                                                            this->formattedText, this->userTextEdit);
         loadTextDialog->show();
     }
 }
@@ -67,7 +69,8 @@ void MainWindow::show_params_dialog()
 {
     if(this->userAccount.logged_in)
     {
-        TextParamsDialog* textParamsDialog = new TextParamsDialog(this, &(this->userAccount));
+        TextParamsDialog* textParamsDialog = new TextParamsDialog(this, &(this->userAccount),
+                                                                  this->formattedText, this->userTextEdit);
         textParamsDialog->show();
     }
 }

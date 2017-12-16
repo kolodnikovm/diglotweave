@@ -1,9 +1,12 @@
 #include "loadtextdialog.h"
 
-LoadTextDialog::LoadTextDialog( QWidget * parent, UserAccount* user_account) : QDialog(parent) {
+LoadTextDialog::LoadTextDialog( QWidget * parent, UserAccount* user_account,
+                                FormattedText* formatted_text, UserTextEdit* usertextedit) : QDialog(parent) {
     ui.setupUi(this);
 
     this->user_account = user_account;
+    this->formatted_text = formatted_text;
+    this->usertextedit = usertextedit;
 
     connect(ui.loadTextByFileButton, SIGNAL (released()), this, SLOT (load_text_by_file()));
     connect(ui.loadTextButton, SIGNAL (released()), this, SLOT (load_text()));
@@ -31,14 +34,14 @@ void LoadTextDialog::load_text_by_file()
 
 void LoadTextDialog::load_text()
 {
-    QString text_contents = ui.loadTextEdit->toHtml();
+    QString text_contents = ui.loadTextEdit->toPlainText();
 
     UserDictionary* dict_now = this->user_account->GetDictionary();
     if(dict_now != 0)
-        ((MainWindow*)(parent()))->formattedText->SetDict(dict_now);
+        this->formatted_text->SetDict(dict_now);
 
-    ((MainWindow*)(parent()))->formattedText->SetText(text_contents);
-    ((MainWindow*)(parent()))->userTextEdit->SetFormattedText(((MainWindow*)(parent()))->formattedText);
+    this->formatted_text->SetText(text_contents);
+    this->usertextedit->SetFormattedText(this->formatted_text);
 
     close();
 }
