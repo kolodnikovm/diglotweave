@@ -6,7 +6,9 @@ const QString FormattedText::textCloseTag = QString("</p>");
 const QString FormattedText::highlightOpenTag = QString("<span style=\" font-weight:600; color:#ef2929;\">");
 const QString FormattedText::highlightCloseTag = QString("</span>");
 
-FormattedText::FormattedText(QString text)
+FormattedText::FormattedText() { }
+
+void FormattedText::SetText(QString text)
 {
     this->text = text;
 }

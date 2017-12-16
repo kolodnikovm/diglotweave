@@ -19,7 +19,8 @@ void TextParamsDialog::change_params()
     this->user_account->SetDictionary(dict_id);
 
     UserDictionary* dict_now = this->user_account->GetDictionary();
-    ((MainWindow*)(parent()))->set_dict(dict_now);
+    ((MainWindow*)(parent()))->formattedText->SetDict(dict_now);
+    ((MainWindow*)(parent()))->userTextEdit->SetFormattedText(((MainWindow*)(parent()))->formattedText);
 
     close();
 }

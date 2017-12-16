@@ -32,7 +32,13 @@ void LoadTextDialog::load_text_by_file()
 void LoadTextDialog::load_text()
 {
     QString text_contents = ui.loadTextEdit->toHtml();
-    ((MainWindow*)(parent()))->set_text(text_contents);
+
+    UserDictionary* dict_now = this->user_account->GetDictionary();
+    if(dict_now != 0)
+        ((MainWindow*)(parent()))->formattedText->SetDict(dict_now);
+
+    ((MainWindow*)(parent()))->formattedText->SetText(text_contents);
+    ((MainWindow*)(parent()))->userTextEdit->SetFormattedText(((MainWindow*)(parent()))->formattedText);
 
     close();
 }

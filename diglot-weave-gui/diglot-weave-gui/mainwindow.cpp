@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     this->userTextEdit = this->findChild<UserTextEdit*>("mainTextEdit");
-    this->mainText = QString();
+    this->formattedText = new FormattedText();
     this->userAccount = UserAccount();
 
     connect(ui->action_login, SIGNAL(triggered()), this, SLOT(show_login_dialog()));
@@ -76,22 +76,6 @@ void MainWindow::show_about_dialog()
 {
     AboutDialog* aboutDialog = new AboutDialog(this);
     aboutDialog->show();
-}
-
-void MainWindow::set_text(QString loaded_text)
-{
-    this->mainText = loaded_text;
-    this->formattedText = new FormattedText(this->mainText);
-
-    UserDictionary* dict_now = this->userAccount.GetDictionary();
-    if(dict_now != 0)
-        set_dict(dict_now);
-}
-
-void MainWindow::set_dict(UserDictionary* user_dict)
-{
-    this->formattedText->SetDict(user_dict);
-    this->userTextEdit->SetFormattedText(this->formattedText);
 }
 
 void MainWindow::close()

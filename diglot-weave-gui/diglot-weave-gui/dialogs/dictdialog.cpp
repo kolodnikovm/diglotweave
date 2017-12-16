@@ -7,6 +7,7 @@ DictDialog::DictDialog( QWidget * parent, UserAccount* user_account) : QDialog(p
 
     connect(ui.addDictButton, SIGNAL (released()), this, SLOT (add_dictionary()));
     connect(ui.addWordButton, SIGNAL (released()), this, SLOT (add_word()));
+    connect(ui.removeWordButton, SIGNAL(released()), this, SLOT (remove_word()));
     connect(ui.closeDictButton, SIGNAL (released()), this, SLOT (close()));
 
     connect(ui.dictList, SIGNAL (itemSelectionChanged()), this, SLOT (rewrite_table()));
@@ -32,6 +33,18 @@ void DictDialog::add_word()
         this->user_account->GetDictionary(dict_index)->add_word(word_value, translate_value);
         this->rewrite_table();
     }
+}
+
+void DictDialog::remove_word()
+{
+    int dict_index = ui.dictList->currentRow();
+    int current_row = ui.dictContentTable->currentRow();
+
+    QString word = ui.dictContentTable->item(current_row, 0)->text();
+    QString translate = ui.dictContentTable->item(current_row, 1)->text();
+
+    this->user_account->GetDictionary(dict_index)->remove_word(word, translate);
+    this->rewrite_table();
 }
 
 void DictDialog::rewrite_list()
@@ -61,5 +74,11 @@ void DictDialog::rewrite_table()
         QString translate_value = user_dictionary[word_index].GetTranslate();
         QTableWidgetItem *translate_item = new QTableWidgetItem(translate_value);
         ui.dictContentTable->setItem(word_index, 1, translate_item);
+    }
+
+    if(this->user_account->GetDictionary() == this->user_account->GetDictionary(dict_index))
+    {
+        ((MainWindow*)(parent()))->formattedText->SetDict(this->user_account->GetDictionary());
+        ((MainWindow*)(parent()))->userTextEdit->SetFormattedText(((MainWindow*)(parent()))->formattedText);
     }
 }

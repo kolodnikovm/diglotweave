@@ -20,12 +20,11 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
-    void set_text(QString loaded_text);
-    void set_dict(UserDictionary* dict_now);
-
     ~MainWindow();
 
     UserAccount userAccount;
+    FormattedText* formattedText;
+    UserTextEdit* userTextEdit;
 
 public slots:
     void show_login_dialog();
@@ -39,10 +38,6 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
-
-    QString mainText;
-    FormattedText* formattedText;
-    UserTextEdit* userTextEdit;
 };
 
 #endif // MAINWINDOW_H

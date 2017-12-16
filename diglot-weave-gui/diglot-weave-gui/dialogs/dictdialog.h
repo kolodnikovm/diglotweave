@@ -6,6 +6,7 @@
 #include "ui_dictdialog.h"
 #include "userdictionary.h"
 #include "useraccount.h"
+#include "mainwindow.h"
 
 class DictDialog : public QDialog {
     Q_OBJECT
@@ -16,6 +17,7 @@ public:
 public slots:
     void add_dictionary();
     void add_word();
+    void remove_word();
 
 private slots:
     void rewrite_list();

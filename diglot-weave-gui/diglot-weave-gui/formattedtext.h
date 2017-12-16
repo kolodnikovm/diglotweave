@@ -19,7 +19,8 @@ private:
 
     UserDictionary dict_now;
 public:
-    FormattedText(QString text);
+    FormattedText();
+    void SetText(QString text);
     void SetDict(UserDictionary* dict_now);
     QString GetFormattedText();
     void ReplaceWord(QString chosen_word);
