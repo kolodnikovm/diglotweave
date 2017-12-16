@@ -4,6 +4,7 @@
 #include <QString>
 #include <QList>
 #include "userdictionary.h"
+#include "globaldictionary.h"
 
 class UserAccount
 {
@@ -15,6 +16,7 @@ private:
     QString password;
 
     QList<UserDictionary> dictionaries;
+    GlobalDictionary global_dictionary;
 
     bool verified;
     int dict_id;
@@ -25,9 +27,12 @@ public:
 
     UserAccount();
     UserAccount(int account_id, QString email, QString login, QString password);
+
     bool LogIn(QString login, QString password);
     void VerifyAccount();
+
     void CreateDictionary(QString dict_name);
+    void MakeGlobalDictionary();
     UserDictionary* GetDictionary();
     UserDictionary* GetDictionary(int dict_id);
     void SetDictionary(int dict_id);

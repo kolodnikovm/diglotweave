@@ -90,7 +90,7 @@ void FormattedText::FormatText()
         if(highlighted)
             this->word_list[i].Highlight();
         else
-            this->word_list[i].Translate();
+            this->word_list[i].UnHighlight();
     }
 }
 

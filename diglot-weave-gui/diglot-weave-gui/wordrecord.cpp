@@ -62,3 +62,8 @@ void WordRecord::Highlight()
 {
     this->highlighted = true;
 }
+
+void WordRecord::UnHighlight()
+{
+    this->highlighted = false;
+}

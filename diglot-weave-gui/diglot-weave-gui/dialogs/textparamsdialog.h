@@ -15,6 +15,7 @@ public:
                       FormattedText* formatted_text = 0, UserTextEdit* usertextedit = 0);
 
 public slots:
+    void check_checkbox(bool checked);
     void change_params();
 
 private:

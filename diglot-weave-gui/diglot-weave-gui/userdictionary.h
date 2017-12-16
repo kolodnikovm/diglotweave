@@ -7,7 +7,7 @@
 
 class UserDictionary
 {
-private:
+protected:
     QList<DictRecord> words;
 public:
     QString dict_name;

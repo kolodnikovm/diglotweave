@@ -27,6 +27,7 @@ public:
 
     bool IsHighlighted();
     void Highlight();
+    void UnHighlight();
 };
 
 #endif // WORDRECORD_H

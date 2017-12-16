@@ -46,9 +46,28 @@ void UserAccount::CreateDictionary(QString dict_name)
         this->dict_id = 0;
 }
 
+void UserAccount::MakeGlobalDictionary()
+{
+    this->global_dictionary = GlobalDictionary();
+
+    for(int i = 0, dict_count = this->dictionaries.size(); i < dict_count; ++i)
+    {
+        for(int j = 0, word_count = this->dictionaries[i].size(); j < word_count; ++j)
+        {
+            QString word = this->dictionaries[i][j].GetWord();
+            QString translate = this->dictionaries[i][j].GetTranslate();
+
+            this->global_dictionary.add_word(word, translate);
+        }
+    }
+}
+
 UserDictionary* UserAccount::GetDictionary()
 {
-    return this->GetDictionary(this->dict_id);
+    if(this->dict_id != -1)
+        return this->GetDictionary(this->dict_id);
+    else
+        return &(this->global_dictionary);
 }
 
 UserDictionary* UserAccount::GetDictionary(int dict_id)
