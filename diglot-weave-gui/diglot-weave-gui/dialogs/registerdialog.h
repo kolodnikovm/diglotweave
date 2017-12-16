@@ -15,7 +15,6 @@ public:
 
 public slots:
     void make_register();
-    void cancel();
 
 private:
     Ui::RegisterDialog ui;

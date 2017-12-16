@@ -20,8 +20,12 @@ void UserTextEdit::mousePressEvent(QMouseEvent *mouseEvent)
         setTextCursor(textCursor);
 
         QString chosen_word = textCursor.selectedText();
-        this->formattedText->ReplaceWord(chosen_word);
-        this->setHtml(this->formattedText->GetFormattedText());
+
+        if(chosen_word.size() > 0)
+        {
+            this->formattedText->ReplaceWord(chosen_word);
+            this->setHtml(this->formattedText->GetFormattedText());
+        }
     }
 
     QTextEdit::mousePressEvent(mouseEvent);

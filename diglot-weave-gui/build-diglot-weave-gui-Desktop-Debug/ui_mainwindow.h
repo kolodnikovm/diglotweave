@@ -41,6 +41,7 @@ public:
     QAction *action_load_text_by_buffer;
     QAction *action_load_text_by_file;
     QAction *action_load_text;
+    QAction *action_change_params;
     QWidget *centralwidget;
     QHBoxLayout *horizontalLayout;
     UserTextEdit *mainTextEdit;
@@ -84,6 +85,8 @@ public:
         action_load_text_by_file->setObjectName(QStringLiteral("action_load_text_by_file"));
         action_load_text = new QAction(MainWindow);
         action_load_text->setObjectName(QStringLiteral("action_load_text"));
+        action_change_params = new QAction(MainWindow);
+        action_change_params->setObjectName(QStringLiteral("action_change_params"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         centralwidget->setEnabled(true);
@@ -122,6 +125,7 @@ public:
         menu_user->addAction(action_dict);
         menu_about->addAction(action_about);
         menu_text->addAction(action_load_text);
+        menu_text->addAction(action_change_params);
 
         retranslateUi(MainWindow);
 
@@ -145,6 +149,7 @@ public:
         action_load_text_by_buffer->setText(QApplication::translate("MainWindow", "\320\230\320\267 \320\261\321\203\321\204\320\265\321\200\320\260 \320\276\320\261\320\274\320\265\320\275\320\260", Q_NULLPTR));
         action_load_text_by_file->setText(QApplication::translate("MainWindow", "\320\230\320\267 \321\202\320\265\320\272\321\201\321\202\320\276\320\262\320\276\320\263\320\276 \321\204\320\260\320\271\320\273\320\260", Q_NULLPTR));
         action_load_text->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \321\202\320\265\320\272\321\201\321\202", Q_NULLPTR));
+        action_change_params->setText(QApplication::translate("MainWindow", "\320\230\320\267\320\274\320\265\320\275\320\270\321\202\321\214 \320\277\320\260\321\200\320\260\320\274\320\265\321\202\321\200\321\213 \321\202\320\265\320\272\321\201\321\202\320\260", Q_NULLPTR));
         mainTextEdit->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

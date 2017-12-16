@@ -32,12 +32,15 @@ SOURCES += \
     dialogs/dictdialog.cpp \
     dialogs/logindialog.cpp \
     dialogs/registerdialog.cpp \
-    dialogs/errordialog.cpp \
     utils.cpp \
     dialogs/loadtextdialog.cpp \
     usertextedit.cpp \
     userdictionary.cpp \
-    useraccount.cpp
+    useraccount.cpp \
+    dialogs/textparamsdialog.cpp \
+    wordrecord.cpp \
+    globaldictionary.cpp \
+    dialogs/restorepassdialog.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -47,12 +50,15 @@ HEADERS += \
     dialogs/dictdialog.h \
     dialogs/logindialog.h \
     dialogs/registerdialog.h \
-    dialogs/errordialog.h \
     utils.h \
     usertextedit.h \
     dialogs/loadtextdialog.h \
     userdictionary.h \
-    useraccount.h
+    useraccount.h \
+    dialogs/textparamsdialog.h \
+    wordrecord.h \
+    globaldictionary.h \
+    dialogs/restorepassdialog.h
 
 FORMS += \
         mainwindow.ui \
@@ -60,5 +66,6 @@ FORMS += \
     dialogs/dictdialog.ui \
     dialogs/logindialog.ui \
     dialogs/registerdialog.ui \
-    dialogs/errordialog.ui \
-    dialogs/loadtextdialog.ui
+    dialogs/loadtextdialog.ui \
+    dialogs/textparamsdialog.ui \
+    dialogs/restorepassdialog.ui

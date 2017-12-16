@@ -1,63 +1,144 @@
 #include "formattedtext.h"
 
-const QString FormattedText::textOpenTag = QString("<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">");
-const QString FormattedText::textCloseTag = QString("</p>");
-
-const QString FormattedText::highlightOpenTag = QString("<span style=\" font-weight:600; color:#ef2929;\">");
-const QString FormattedText::highlightCloseTag = QString("</span>");
-
-FormattedText::FormattedText(QString text)
+FormattedText::FormattedText()
 {
-    this->text = text;
+    this->change_freq = 1.0;
+}
+
+void FormattedText::SetText(QString text)
+{
+    QStringList string_list = text.split(' ');
+    this->word_list.clear();
+
+    for(int i = 0, len = string_list.size(); i < len; ++i)
+    {
+        QString word_value = string_list[i];
+        QString punct_begin, punct_end;
+        int word_begin = 0, word_end = word_value.size() - 1;
+
+        for(int i = 0, len = word_value.size(); i < len; ++i)
+        {
+            QChar c = word_value[i];
+
+            if(c.isPunct())
+            {
+                word_begin = i + 1;
+                punct_begin += c;
+            }
+            else
+                break;
+        }
+
+        for(int i = word_value.size() - 1; i >= 0; --i)
+        {
+            QChar c = word_value[i];
+
+            if(c.isPunct())
+            {
+                word_end = i - 1;
+                punct_end += c;
+            }
+            else
+                break;
+        }
+
+        QString word_wrapped = word_value.mid(word_begin, word_end - word_begin + 1);
+        WordRecord word_record = WordRecord(word_wrapped);
+
+        word_record.SetPunctMarks(punct_begin, punct_end);
+        this->word_list.append(word_record);
+    }
+
+    FormatText();
 }
 
 void FormattedText::SetDict(UserDictionary* dict_now)
 {
     this->dict_now = *dict_now;
+    FormatText();
+}
+
+void FormattedText::SetChangeWordFrequency(double change_freq)
+{
+    this->change_freq = change_freq;
+    FormatText();
+}
+
+void FormattedText::FormatText()
+{
+    for(int i = 0, len = this->word_list.size(); i < len; ++i)
+    {
+        this->word_list[i].Reset();
+
+        QString word_now = this->word_list[i].GetWord();
+        bool highlighted = false;
+
+        for(int j = 0, len = dict_now.size(); j < len; ++j)
+        {
+            QString word_init(dict_now[j].GetWord());
+            QString word_translate(dict_now[j].GetTranslate());
+
+            if(word_now == word_init)
+            {
+                this->word_list[i].SetTranslate(word_translate);
+
+                if(utils::get_doubled_random() < this->change_freq)
+                    highlighted = true;
+
+                break;
+            }
+        }
+
+        if(highlighted)
+            this->word_list[i].Highlight();
+    }
 }
 
 QString FormattedText::GetFormattedText()
 {
     QString formatted_text;
-    QString pre_highlighted_text(this->text);
+    QString highlighted_text;
 
-    for(int i = 0, len = dict_now.size(); i < len; ++i)
+    for(int i = 0, len = this->word_list.size(); i < len; ++i)
     {
-        QString word_init(dict_now[i].GetWord());
-        QString word_translate;
+        bool highlighted = this->word_list[i].IsHighlighted();
+        QString tag_open, tag_close;
 
-        word_translate += this->highlightOpenTag;
+        if(highlighted)
+        {
+            tag_open = utils::highlight_open_tag;
+            tag_close = utils::highlight_close_tag;
+        }
 
-        if(!dict_now[i].IsTranslated())
-            word_translate += dict_now[i].GetTranslate();
+        QString word = this->word_list[i].GetFullWord(tag_open, tag_close, false);
+        QString translate = this->word_list[i].GetFullWord(tag_open, tag_close, true);
+
+        if(this->word_list[i].HaveTranslate())
+        {
+            if(!this->word_list[i].IsTranslated())
+                highlighted_text += translate;
+            else
+                highlighted_text += word;
+        }
         else
-            word_translate += word_init;
-
-        word_translate += this->highlightCloseTag;
-
-        word_init = " " + word_init + " ";
-        word_translate = " " + word_translate + " ";
-
-        pre_highlighted_text.replace(word_init, word_translate);
+            highlighted_text += word;
     }
 
-    formatted_text += this->textOpenTag;
-    formatted_text += pre_highlighted_text;
-    formatted_text += this->textCloseTag;
+    formatted_text += utils::text_open_tag;
+    formatted_text += highlighted_text;
+    formatted_text += utils::text_close_tag;
 
     return formatted_text;
 }
 
 void FormattedText::ReplaceWord(QString chosen_word)
 {
-    for(int i = 0, len = dict_now.size(); i < len; ++i)
+    for(int i = 0, len = word_list.size(); i < len; ++i)
     {
-        if(dict_now[i].GetTranslate() == chosen_word)
+        if(word_list[i].GetTranslate() == chosen_word && word_list[i].IsHighlighted())
         {
-            if(!dict_now[i].IsTranslated())
-            {
-                dict_now[i].Translate();
-            }
+            if(!word_list[i].IsTranslated())
+                word_list[i].Translate();
         }
     }
 }

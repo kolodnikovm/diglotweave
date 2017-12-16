@@ -20,27 +20,25 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
-    void format_text(QString loaded_text, UserDictionary* dict_now);
-
     ~MainWindow();
 
     UserAccount userAccount;
+    FormattedText* formattedText;
+    UserTextEdit* userTextEdit;
 
 public slots:
     void show_login_dialog();
     void show_register_dialog();
+    void show_restore_pass_dialog();
     void show_dict_dialog();
     void show_load_text_dialog();
+    void show_params_dialog();
     void show_about_dialog();
 
     void close();
 
 private:
     Ui::MainWindow *ui;
-
-    QString mainText;
-    FormattedText* formattedText;
-    UserTextEdit* userTextEdit;
 };
 
 #endif // MAINWINDOW_H
