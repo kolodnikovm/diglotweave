@@ -1,6 +1,6 @@
 """ Переводит слова на англ. языке в нужную форму """
 
-from .Rules.rules import inflect_verb, inflect_noun
+from .rules.rules import inflect_verb, inflect_noun
 
 class Inflector:
 
@@ -9,12 +9,12 @@ class Inflector:
         self.inflect_noun = inflect_noun
 
     def inflect_word(self, word, tag):
-        pos, tense, number = tag.POS, tag.tense, tag.number
+        pos = tag.POS
 
         if pos == 'VERB' or pos == 'INFN':
-            return self.inflect_verb(word, tense, number)
+            return self.inflect_verb(word, tag)
         elif pos == 'NOUN':
-            return self.inflect_noun(word, number)
+            return self.inflect_noun(word, tag)
         
         return word
         

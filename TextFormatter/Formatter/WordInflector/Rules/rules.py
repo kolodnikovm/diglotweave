@@ -14,13 +14,19 @@ with open(FILE_PATH, 'r', newline='') as iv:
         IRREGULAR_VERBS.update({row[0]: row})
 
 
-def inflect_verb(verb, tense, number):
-    """ Переводит глагол в форму, согласно tense и number """
+def inflect_verb(verb, tag):
+    """ Переводит глагол в форму, согласно tense, pers, numb """
+
+    tense, pers, numb = tag.tense, tag.person, tag.number
 
     if verb in IRREGULAR_VERBS:
         if tense == 'past':
             return IRREGULAR_VERBS[verb][1]
         elif tense == 'pres':
+            if pers == '3per' and numb == 'sing':
+                if IRREGULAR_VERBS[verb][0].endswith(('s', 'x', 'z', 'ch', 'sh')):
+                    return IRREGULAR_VERBS[verb][0] + 'es'
+                return IRREGULAR_VERBS[verb][0] + 's'
             return IRREGULAR_VERBS[verb][0]
         elif tense == 'futr':
             return '(will)' + IRREGULAR_VERBS[verb][0]
@@ -28,18 +34,23 @@ def inflect_verb(verb, tense, number):
     else:
         # TODO уточнить правила постановки в прошедшее
         if tense == 'past':
-            if verb[-1] in VOWELS:
+            if verb[-1] in VOWELS or (verb[-1] in CONSONANTS and verb[-1] != 'x'):
                 return verb + 'd'
-            elif verb[-1] in CONSONANTS:
-                return verb + 'ed'
+            elif verb[-2] in CONSONANTS and verb[-1] == 'y':
+                return verb[:-1] +'ied'
+            return verb + 'ed'
         elif tense == 'futr':
             return '(will) ' + verb
         elif tense == 'pres':
-            # TODO перелать форму глагола под лица
+            if pers == '3per' and numb == 'sing':
+                if verb.endswith(('s', 'x', 'z', 'ch', 'sh')):
+                    return verb + 'es'
+                return verb + 's'
             return verb
+        return verb
 
-
-def inflect_noun(noun, number):
+def inflect_noun(noun, tag):
+    number = tag.number
     # TODO уточнить про ножницы, качели и пр. множественные и irregular nouns
     if number == 'plur':
         if noun.endswith(('s', 'x', 'z', 'ch', 'sh')):
@@ -48,12 +59,3 @@ def inflect_noun(noun, number):
             return noun[:-1] + 'ies'
         return noun + 's'
     return noun
-
-if __name__ == '__main__':
-    print('test nouns')
-    print(inflect_noun('actress', 'plur'))
-    print(inflect_noun('boy', 'plur'))
-    print('\ntest verbs')
-    print(inflect_verb('run', 'past', 'plur'))
-    print(inflect_verb('draw', 'past', 'plur'))
-    print(inflect_verb('jump', 'pres', 'sing'))
