@@ -17,6 +17,17 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_5">
      <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_11">
+       <item>
+        <widget class="QPushButton" name="importDictButton">
+         <property name="text">
+          <string>Импортировать словарь</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_4">
