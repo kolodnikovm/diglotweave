@@ -20,20 +20,6 @@ bool utils::is_input_valid(QString input)
         return true;
 }
 
-bool utils::is_email_valid(QString email)
-{
-    QRegExp mailRE("\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b");
-    mailRE.setCaseSensitivity(Qt::CaseInsensitive);
-    mailRE.setPatternSyntax(QRegExp::RegExp);
-
-    if(email.length() == 0)
-        return false;
-    else if(!mailRE.exactMatch(email))
-        return false;
-    else
-        return true;
-}
-
 bool utils::is_word_valid(QString word_value)
 {
     bool is_parsed = true;

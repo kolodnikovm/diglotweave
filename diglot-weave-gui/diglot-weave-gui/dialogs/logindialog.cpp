@@ -7,7 +7,6 @@ LoginDialog::LoginDialog( QWidget * parent, UserAccount* user_account) : QDialog
 
     connect(ui.loginLoginButton, SIGNAL (released()), this, SLOT (make_login()));
     connect(ui.regDialogButton, SIGNAL (released()), this, SLOT (show_register_dialog()));
-    connect(ui.restorePassButton, SIGNAL (released()), this, SLOT (show_restore_password_dialog()));
     connect(ui.loginCancelButton, SIGNAL (released()), this, SLOT (close()));
 }
 
@@ -34,11 +33,5 @@ void LoginDialog::make_login()
 void LoginDialog::show_register_dialog()
 {
     ((MainWindow*)parent())->show_register_dialog();
-    close();
-}
-
-void LoginDialog::show_restore_password_dialog()
-{
-    ((MainWindow*)parent())->show_restore_pass_dialog();
     close();
 }
