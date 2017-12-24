@@ -63,6 +63,17 @@
     </layout>
    </item>
    <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_12">
+     <item>
+      <widget class="QPushButton" name="removeDictButton">
+       <property name="text">
+        <string>Удалить словарь</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_10">
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_7">

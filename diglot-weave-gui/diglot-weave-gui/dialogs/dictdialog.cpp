@@ -10,6 +10,7 @@ DictDialog::DictDialog( QWidget * parent, UserAccount* user_account,
 
     connect(ui.importDictButton, SIGNAL (released()), this, SLOT (import_dictionary()));
     connect(ui.addDictButton, SIGNAL (released()), this, SLOT (add_dictionary()));
+    connect(ui.removeDictButton, SIGNAL(released()), this, SLOT (remove_dictionary()));
     connect(ui.addWordButton, SIGNAL (released()), this, SLOT (add_word()));
     connect(ui.removeWordButton, SIGNAL(released()), this, SLOT (remove_word()));
     connect(ui.closeDictButton, SIGNAL (released()), this, SLOT (close()));
@@ -90,6 +91,18 @@ void DictDialog::add_dictionary()
     this->rewrite_dict_list();
 }
 
+void DictDialog::remove_dictionary()
+{
+    int dict_index = ui.dictList->currentRow();
+
+    if(dict_index >= 0 && dict_index < this->user_account->GetDictionariesCount())
+    {
+        this->user_account->DeleteDictionary(dict_index);
+        this->rewrite_dict_list();
+        this->rewrite_word_table();
+    }
+}
+
 void DictDialog::add_word()
 {
     QString word_value = ui.dictWordEdit->text();
@@ -142,13 +155,14 @@ void DictDialog::rewrite_word_table()
 {
     int dict_index = ui.dictList->currentRow();
 
-    if(dict_index >= 0)
+    ui.dictContentTable->clear();
+    ui.dictContentTable->setRowCount(0);
+    ui.dictContentTable->setColumnCount(2);
+
+    if(dict_index >= 0 && dict_index < this->user_account->GetDictionariesCount())
     {
         int word_count = this->user_account->GetDictionary(dict_index)->size();
-
-        ui.dictContentTable->clear();
         ui.dictContentTable->setRowCount(word_count);
-        ui.dictContentTable->setColumnCount(2);
 
         for(int word_index = 0; word_index < word_count; ++word_index)
         {

@@ -22,6 +22,7 @@ public:
 public slots:
     void import_dictionary();
     void add_dictionary();
+    void remove_dictionary();
     void add_word();
     void remove_word();
 
