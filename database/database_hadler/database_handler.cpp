@@ -197,7 +197,7 @@ void database_handler::export_to_csv(int dict_id, QString path)
         for (int j = 0; j < cols; j++) {
 
                 textData += model->data(model->index(i,j)).toString();
-                textData += ", ";
+                if (j != cols - 1)textData += ", ";
         }
         textData += "\n";
     }
