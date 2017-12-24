@@ -152,9 +152,20 @@ void database_handler::add_new_word_to_user_dict(QString word, QString translati
 
 void database_handler::delete_user_dictionary(int dict_id)
 {
-    QString qstr = "DELETE FROM User_dictionaries WHERE User_dict_id = %1";
-    qstr = qstr.arg(dict_id);
-    QSqlQuery qsqlq1 = SQL_query(qstr);
+    QString qstr1 = "DELETE FROM User_dictionaries WHERE User_dict_id = %1";
+    qstr1 = qstr1.arg(dict_id);
+    QSqlQuery qsqlq1 = SQL_query(qstr1);
+
+    QString qstr2 = "DELETE FROM WHERE User_dict_id = %1";
+    qstr2 = qstr2.arg(dict_id);
+    QSqlQuery qsqlq2 = SQL_query(qstr2);
+}
+
+void database_handler::delete_all_words_from_user_dict(int dict_id)
+{
+    QString qstr2 = "DELETE FROM Translations WHERE User_dict_id = %1";
+    qstr2 = qstr2.arg(dict_id);
+    QSqlQuery qsqlq2 = SQL_query(qstr2);
 }
 
 void database_handler::delete_word_from_user_dict(QString word, QString translation, int dict_id)
@@ -170,4 +181,34 @@ void database_handler::delete_word_from_user_dict(QString word, QString translat
     QString qstr2 = "DELETE FROM Translations WHERE User_dict_id = %1 AND Gdict_word_id = %2 ";
     qstr2 = qstr2.arg(dict_id).arg(i);
     QSqlQuery qsqlq2 = SQL_query(qstr2);
+}
+
+void database_handler::export_to_csv(int dict_id, QString path)
+{
+    QString qstr = "SELECT Word, Translation FROM Global_dictionary WHERE Gdict_word_id IN (SELECT Gdict_word_id FROM Translations WHERE User_dict_id = %1)";
+    qstr = qstr.arg(dict_id);
+    QSqlQueryModel *model = new QSqlQueryModel();
+    model->setQuery(qstr);
+    int rows = model->rowCount();
+    int cols = model->columnCount();
+    QString textData;
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++) {
+
+                textData += model->data(model->index(i,j)).toString();
+                textData += ", ";
+        }
+        textData += "\n";
+    }
+
+    QFile csvFile(path);
+    if(csvFile.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+
+        QTextStream out(&csvFile);
+        out << textData;
+
+        csvFile.close();
+    }
+
 }

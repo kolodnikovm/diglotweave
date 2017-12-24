@@ -4,6 +4,7 @@
 #include <QString>
 #include <QtSql>
 #include <QSqlQuery>
+#include <QFile>
 
 class database_handler
 {
@@ -39,10 +40,16 @@ public:
     void add_new_word_to_user_dict(QString, QString, int);
 
     // delete user dictionary, arguments: user_dictionary_id
-    void delete_user_dictionary(int user_dict_id);
+    void delete_user_dictionary(int);
+
+    // delete all words
+    void delete_all_words_from_user_dict(int);
 
     // delete word and translation to user specific dictionary, arguments: word, translation, dictionary id
     void delete_word_from_user_dict(QString, QString, int);
+
+    // export table of word of specific unit dictionary
+    void export_to_csv(int, QString path = "dict.csv");
 
 };
 
