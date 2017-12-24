@@ -34,6 +34,60 @@ bool utils::is_email_valid(QString email)
         return true;
 }
 
+bool utils::is_word_valid(QString word_value)
+{
+    bool is_parsed = true;
+
+    QRegExp word_re("[а-яА-Я]+");
+    word_re.setCaseSensitivity(Qt::CaseInsensitive);
+    word_re.setPatternSyntax(QRegExp::RegExp);
+
+    if(!word_re.exactMatch(word_value))
+    {
+        utils::show_error("Значение исходного слова содержит недопустимые символы.");
+        is_parsed = false;
+    }
+    else if(word_value.size() > 55)
+    {
+        utils::show_error("Длина слова в словаре не должна превышать 55 символов.");
+        is_parsed = false;
+    }
+    else if(word_value.size() == 0)
+    {
+        utils::show_error("Значение слова не должно быть пустым.");
+        is_parsed = false;
+    }
+
+    return is_parsed;
+}
+
+bool utils::is_translate_valid(QString translate_value)
+{
+    bool is_parsed = true;
+
+    QRegExp translate_re("[a-zA-Z]+");
+    translate_re.setCaseSensitivity(Qt::CaseInsensitive);
+    translate_re.setPatternSyntax(QRegExp::RegExp);
+
+    if(!translate_re.exactMatch(translate_value))
+    {
+        utils::show_error("Значение перевода слова содержит недопустимые символы.");
+        is_parsed = false;
+    }
+    else if(translate_value.size() > 55)
+    {
+        utils::show_error("Длина перевода в словаре не должна превышать 55 символов.");
+        is_parsed = false;
+    }
+    else if(translate_value.size() == 0)
+    {
+        utils::show_error("Значение перевода не должно быть пустым.");
+        is_parsed = false;
+    }
+
+    return is_parsed;
+}
+
 QString utils::generate_password_hash(QString password)
 {
    QString hash_value = QString(QCryptographicHash::hash(password.toLocal8Bit(), QCryptographicHash::Md5).toHex());

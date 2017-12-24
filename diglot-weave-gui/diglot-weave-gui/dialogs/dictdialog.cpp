@@ -35,8 +35,10 @@ void DictDialog::import_dictionary()
 
     this->user_account->CreateDictionary(file_name_only);
     int dict_index = this->user_account->GetDictionariesCount() - 1;
+    bool failed = false;
 
     QTextStream in(&f);
+
     while(!in.atEnd())
     {
         QString word_translate_line;
@@ -47,12 +49,37 @@ void DictDialog::import_dictionary()
         {
             QString word_value = word_translate[0];
             QString translate_value = word_translate[1];
+
+            bool word_valid = utils::is_word_valid(word_value);
+
+            if(!word_valid)
+            {
+                failed = true;
+                break;
+            }
+
+            bool translate_valid = utils::is_translate_valid(translate_value);
+
+            if(!translate_valid)
+            {
+                failed = true;
+                break;
+            }
+
             this->user_account->GetDictionary(dict_index)->add_word(word_value, translate_value);
+        }
+        else if(word_translate_line.size() != 0 && word_translate_line.indexOf(',') == -1)
+        {
+            utils::show_error("Некорректный формат записей в словаре.");
+            failed = true;
+            break;
         }
     }
 
-    f.close();
+    if(failed)
+        this->user_account->DeleteDictionary(dict_index);
 
+    f.close();
     this->rewrite_dict_list();
 }
 
@@ -71,6 +98,16 @@ void DictDialog::add_word()
 
     if(dict_index >= 0 && dict_index < this->user_account->GetDictionariesCount())
     {
+        bool word_valid = utils::is_word_valid(word_value);
+
+        if(!word_valid)
+            return;
+
+        bool translate_valid = utils::is_translate_valid(translate_value);
+
+        if(!translate_valid)
+            return;
+
         this->user_account->GetDictionary(dict_index)->add_word(word_value, translate_value);
         this->rewrite_word_table();
     }
