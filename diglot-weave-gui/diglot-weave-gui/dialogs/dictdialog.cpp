@@ -22,7 +22,7 @@ DictDialog::DictDialog( QWidget * parent, UserAccount* user_account,
 
 void DictDialog::import_dictionary()
 {
-    QString file_name = QFileDialog::getOpenFileName(this, "Открыть словарь", "/home/", "Text Files (*.txt);All Files (*)");
+    QString file_name = QFileDialog::getOpenFileName(this, "Открыть словарь", "/home/", "CSV Files (*.csv);All Files (*)");
     QFile f(file_name);
 
     if(!f.open(QIODevice::ReadOnly)) {

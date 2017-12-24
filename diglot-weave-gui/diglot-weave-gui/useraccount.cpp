@@ -52,6 +52,8 @@ void UserAccount::MakeGlobalDictionary()
             this->global_dictionary.add_word(word, translate);
         }
     }
+
+    this->global_dictionary.CheckDuplicates();
 }
 
 UserDictionary* UserAccount::GetDictionary()
