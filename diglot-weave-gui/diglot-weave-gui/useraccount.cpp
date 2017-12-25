@@ -31,7 +31,9 @@ bool UserAccount::LogIn(QString login, QString password)
 
 void UserAccount::CreateDictionary(QString dict_name)
 {
-    UserDictionary new_dict(dict_name);
+    int dict_id = this->dictionaries.size();
+
+    UserDictionary new_dict(dict_id, dict_name);
     this->dictionaries.append(new_dict);
 
     if(this->dict_id == -1)
