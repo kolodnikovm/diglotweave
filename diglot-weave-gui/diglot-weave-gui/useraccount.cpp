@@ -2,28 +2,20 @@
 
 UserAccount::UserAccount()
 {
-    this->verified = false;
     this->logged_in = false;
     this->registered = false;
 
     this->dict_id = -1;
 }
 
-UserAccount::UserAccount(int account_id, QString email, QString login, QString password)
+UserAccount::UserAccount(int account_id, QString login, QString password)
 {
     this->account_id = account_id;
-    this->email = email;
     this->login = login;
     this->password = password;
 
-    this->verified = false;
     this->logged_in = false;
     this->registered = true;
-}
-
-void UserAccount::VerifyAccount()
-{
-    this->verified = true;
 }
 
 bool UserAccount::LogIn(QString login, QString password)
@@ -60,6 +52,8 @@ void UserAccount::MakeGlobalDictionary()
             this->global_dictionary.add_word(word, translate);
         }
     }
+
+    this->global_dictionary.CheckDuplicates();
 }
 
 UserDictionary* UserAccount::GetDictionary()
