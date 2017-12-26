@@ -61,7 +61,7 @@ int database_handler::get_user_id_by_name(QString username)
     QString qstr = "SELECT User_id FROM Users WHERE User_name = '%1'";
     qstr = qstr.arg(username);
     QSqlQuery qsqlq = SQL_query(qstr);
-    qsqlq.next();
+    qsqlq.first();
     int i = qsqlq.value(0).toInt();
 
     return i;
