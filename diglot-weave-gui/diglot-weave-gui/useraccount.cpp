@@ -42,7 +42,7 @@ void UserAccount::CreateDictionary(QString dict_name)
 
 void UserAccount::MakeGlobalDictionary()
 {
-    this->global_dictionary = GlobalDictionary();
+    this->global_dictionary = UserDictionary();
 
     for(int i = 0, dict_count = this->dictionaries.size(); i < dict_count; ++i)
     {

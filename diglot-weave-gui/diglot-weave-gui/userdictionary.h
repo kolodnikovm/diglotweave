@@ -19,6 +19,7 @@ public:
     void remove_word(QString word, QString translate);
     int size();
     DictRecord& operator[] (const int index);
+    void CheckDuplicates();
 };
 
 #endif // USERDICTIONARY_H

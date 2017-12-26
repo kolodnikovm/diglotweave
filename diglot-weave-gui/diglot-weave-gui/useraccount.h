@@ -4,7 +4,6 @@
 #include <QString>
 #include <QList>
 #include "userdictionary.h"
-#include "globaldictionary.h"
 
 class UserAccount
 {
@@ -15,7 +14,7 @@ private:
     QString password;
 
     QList<UserDictionary> dictionaries;
-    GlobalDictionary global_dictionary;
+    UserDictionary global_dictionary;
 
     int dict_id;
 
