@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>211</height>
+    <height>176</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -104,26 +104,11 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_3">
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_6">
-       <item>
-        <widget class="QPushButton" name="regDialogButton">
-         <property name="text">
-          <string>Зарегистрироваться</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_7">
-       <item>
-        <widget class="QPushButton" name="restorePassButton">
-         <property name="text">
-          <string>Забыли пароль?</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <widget class="QPushButton" name="regDialogButton">
+       <property name="text">
+        <string>Зарегистрироваться</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

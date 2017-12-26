@@ -17,6 +17,17 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_5">
      <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_11">
+       <item>
+        <widget class="QPushButton" name="importDictButton">
+         <property name="text">
+          <string>Импортировать словарь</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -48,6 +59,17 @@
         <widget class="QListWidget" name="dictList"/>
        </item>
       </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_12">
+     <item>
+      <widget class="QPushButton" name="removeDictButton">
+       <property name="text">
+        <string>Удалить словарь</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

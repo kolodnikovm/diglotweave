@@ -2,8 +2,9 @@
 
 UserDictionary::UserDictionary() { }
 
-UserDictionary::UserDictionary(QString dict_name)
+UserDictionary::UserDictionary(int dict_id, QString dict_name)
 {
+    this->dict_id = dict_id;
     this->dict_name = dict_name;
 }
 

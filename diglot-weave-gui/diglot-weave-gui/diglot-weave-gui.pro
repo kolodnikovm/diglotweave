@@ -39,8 +39,7 @@ SOURCES += \
     useraccount.cpp \
     dialogs/textparamsdialog.cpp \
     wordrecord.cpp \
-    globaldictionary.cpp \
-    dialogs/restorepassdialog.cpp
+    globaldictionary.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -57,8 +56,7 @@ HEADERS += \
     useraccount.h \
     dialogs/textparamsdialog.h \
     wordrecord.h \
-    globaldictionary.h \
-    dialogs/restorepassdialog.h
+    globaldictionary.h
 
 FORMS += \
         mainwindow.ui \
@@ -67,5 +65,4 @@ FORMS += \
     dialogs/logindialog.ui \
     dialogs/registerdialog.ui \
     dialogs/loadtextdialog.ui \
-    dialogs/textparamsdialog.ui \
-    dialogs/restorepassdialog.ui
+    dialogs/textparamsdialog.ui

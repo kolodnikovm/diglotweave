@@ -4,7 +4,6 @@
 #include "dialogs/dictdialog.h"
 #include "dialogs/logindialog.h"
 #include "dialogs/registerdialog.h"
-#include "dialogs/restorepassdialog.h"
 #include "dialogs/loadtextdialog.h"
 #include "dialogs/aboutdialog.h"
 #include "dialogs/textparamsdialog.h"
@@ -22,7 +21,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->action_login, SIGNAL(triggered()), this, SLOT(show_login_dialog()));
     connect(ui->action_reg, SIGNAL(triggered()), this, SLOT(show_register_dialog()));
-    connect(ui->action_restore_pass, SIGNAL(triggered()), this, SLOT(show_restore_pass_dialog()));
     connect(ui->action_dict, SIGNAL(triggered()), this, SLOT(show_dict_dialog()));
     connect(ui->action_load_text, SIGNAL(triggered()), this, SLOT(show_load_text_dialog()));
     connect(ui->action_change_params, SIGNAL(triggered()), this, SLOT(show_params_dialog()));
@@ -48,17 +46,6 @@ void MainWindow::show_register_dialog()
     {
         RegisterDialog* registerDialog = new RegisterDialog(this);
         registerDialog->show();
-    }
-    else
-        utils::show_error("Вы уже авторизованы.");
-}
-
-void MainWindow::show_restore_pass_dialog()
-{
-    if(!this->userAccount.logged_in)
-    {
-        RestorePassDialog* restorePassDialog = new RestorePassDialog(this);
-        restorePassDialog->show();
     }
     else
         utils::show_error("Вы уже авторизованы.");
