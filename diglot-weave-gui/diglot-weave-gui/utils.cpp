@@ -86,6 +86,76 @@ void utils::show_error(QString error_msg)
     error_message->showMessage(error_msg);
 }
 
+void utils::show_info(QWidget* parent, QString info_title, QString info_msg)
+{
+    QMessageBox::information(parent, info_title, info_msg);
+}
+
+QList<QPair<QString, QString>> utils::read_file(QString file_name)
+{
+    QList<QPair<QString, QString>> test_list;
+
+    QFile file(file_name);
+    file.open(QIODevice::ReadOnly);
+
+    QTextStream in_file(&file);
+
+    while(!in_file.atEnd())
+    {
+        QString new_line = in_file.readLine();
+        QStringList new_line_list = new_line.split(' ');
+        test_list.append(QPair<QString, QString>(new_line_list[0],
+                                                 new_line_list[1]));
+    }
+
+    file.close();
+    return test_list;
+}
+
+void utils::test(QWidget* parent, QString test_file_name, QString check_file_name)
+{
+    UserDictionary test_dict(0, "dict_name");
+
+    QList<QPair<QString, QString>> init_values;
+    init_values = read_file(test_file_name);
+
+    QList<QPair<QString, QString>> check_values;
+    check_values = read_file(check_file_name);
+
+    for(int i = 0, len = init_values.size(); i < len; ++i)
+        test_dict.add_word(init_values[i].first, init_values[i].second);
+
+    test_dict.CheckDuplicates();
+    int dict_count = test_dict.size();
+    int test_count = check_values.size();
+
+    QString info = QString("%1 %2\n").arg(QString::number(dict_count),
+                                          QString::number(test_count));
+
+    if(dict_count != test_count)
+    {
+        info += "NOT EQUAL\n";
+    }
+    else
+    {
+        info += "EQUAL\n";
+
+        for(int i = 0; i < test_count; ++i)
+        {
+            QString word_value = check_values[i].first;
+            QString translate_one = check_values[i].second;
+            QString translate_two = test_dict[word_value];
+            bool translate_equal = translate_one.compare(translate_two) == 0;
+
+            info += QString("%1 (%2 == %3) = %4\n").arg(word_value,
+                                                        translate_one, translate_two,
+                                                        QString::number(translate_equal));
+        }
+    }
+
+    utils::show_info(parent, "Information", info);
+}
+
 double utils::get_doubled_random()
 {
     return double(qrand()) / double(RAND_MAX);

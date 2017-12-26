@@ -8,6 +8,8 @@
 #include "dialogs/aboutdialog.h"
 #include "dialogs/textparamsdialog.h"
 
+#include "utils.h"
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -27,6 +29,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->action_about, SIGNAL(triggered()), this, SLOT(show_about_dialog()));
 
     connect(ui->action_exit, SIGNAL(triggered()), this, SLOT(close()));
+
+    utils::test(this, "test_file.txt", "check_file.txt");
 }
 
 void MainWindow::show_login_dialog()

@@ -42,6 +42,15 @@ DictRecord& UserDictionary::operator [](const int index)
         return *(new DictRecord("NONE", "NONE"));
 }
 
+QString UserDictionary::operator [](const QString word_value)
+{
+    for(int i = 0, len = size(); i < len; ++i)
+        if(word_value == this->words[i].GetWord())
+            return this->words[i].GetTranslate();
+
+    return "NONE";
+}
+
 int UserDictionary::size()
 {
     return this->words.length();
