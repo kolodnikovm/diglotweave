@@ -20,18 +20,58 @@ bool utils::is_input_valid(QString input)
         return true;
 }
 
-bool utils::is_email_valid(QString email)
+bool utils::is_word_valid(QString word_value)
 {
-    QRegExp mailRE("\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b");
-    mailRE.setCaseSensitivity(Qt::CaseInsensitive);
-    mailRE.setPatternSyntax(QRegExp::RegExp);
+    bool is_parsed = true;
 
-    if(email.length() == 0)
-        return false;
-    else if(!mailRE.exactMatch(email))
-        return false;
-    else
-        return true;
+    QRegExp word_re("[а-яА-Я]+");
+    word_re.setCaseSensitivity(Qt::CaseInsensitive);
+    word_re.setPatternSyntax(QRegExp::RegExp);
+
+    if(!word_re.exactMatch(word_value))
+    {
+        utils::show_error("Значение исходного слова содержит недопустимые символы.");
+        is_parsed = false;
+    }
+    else if(word_value.size() > 55)
+    {
+        utils::show_error("Длина слова в словаре не должна превышать 55 символов.");
+        is_parsed = false;
+    }
+    else if(word_value.size() == 0)
+    {
+        utils::show_error("Значение слова не должно быть пустым.");
+        is_parsed = false;
+    }
+
+    return is_parsed;
+}
+
+bool utils::is_translate_valid(QString translate_value)
+{
+    bool is_parsed = true;
+
+    QRegExp translate_re("[a-zA-Z]+");
+    translate_re.setCaseSensitivity(Qt::CaseInsensitive);
+    translate_re.setPatternSyntax(QRegExp::RegExp);
+
+    if(!translate_re.exactMatch(translate_value))
+    {
+        utils::show_error("Значение перевода слова содержит недопустимые символы.");
+        is_parsed = false;
+    }
+    else if(translate_value.size() > 55)
+    {
+        utils::show_error("Длина перевода в словаре не должна превышать 55 символов.");
+        is_parsed = false;
+    }
+    else if(translate_value.size() == 0)
+    {
+        utils::show_error("Значение перевода не должно быть пустым.");
+        is_parsed = false;
+    }
+
+    return is_parsed;
 }
 
 QString utils::generate_password_hash(QString password)

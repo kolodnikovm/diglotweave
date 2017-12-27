@@ -3,6 +3,9 @@
 
 #include <QDialog>
 #include <QList>
+#include <QFileDialog>
+#include <QTextStream>
+
 #include "ui_dictdialog.h"
 #include "userdictionary.h"
 #include "useraccount.h"
@@ -17,13 +20,15 @@ public:
                 FormattedText* formatted_text = 0, UserTextEdit* usertextedit = 0);
 
 public slots:
+    void import_dictionary();
     void add_dictionary();
+    void remove_dictionary();
     void add_word();
     void remove_word();
 
 private slots:
-    void rewrite_list();
-    void rewrite_table();
+    void rewrite_dict_list();
+    void rewrite_word_table();
 
 private:
     Ui::DictDialog ui;

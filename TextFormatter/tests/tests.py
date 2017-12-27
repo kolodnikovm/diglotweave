@@ -1,5 +1,5 @@
 import unittest
-import os.path
+
 from formatter.formatter import TextFormatter
 
 class FormatterTests(unittest.TestCase):
@@ -12,10 +12,8 @@ class FormatterTests(unittest.TestCase):
         "study": "изучать",
         "come": "прийти"
         }
-        SCRIPT_PATH = os.path.dirname(__file__)
-        TEXT_NAME = os.path.join(SCRIPT_PATH, 'Assets/TEST_text.txt')
+        TEXT_NAME = './Assets/TEST_text.txt'
         self.tf = TextFormatter(TEXT_NAME, VOCAB)
-        print(self.tf, 'created')
 
     def test_translate_words_from_text(self):
         expected_result = {
