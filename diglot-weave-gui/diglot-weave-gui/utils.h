@@ -10,6 +10,7 @@
 #include <QWidget>
 #include <QMessageBox>
 #include <QTextStream>
+#include <QDebug>
 
 #include "userdictionary.h"
 
@@ -30,11 +31,10 @@ public:
 
     static QString generate_password_hash(QString password);
     static void show_error(QString error_msg);
-    static void show_info(QWidget* parent, QString info_title, QString info_msg);
     static double get_doubled_random();
 
     static QList<QPair<QString, QString>> read_file(QString file_name);
-    static void test(QWidget* parent, QString test_file, QString check_file);
+    static void test(QString test_file, QString check_file);
 };
 
 #endif // UTILS_H

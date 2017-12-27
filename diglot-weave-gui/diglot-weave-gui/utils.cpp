@@ -86,11 +86,6 @@ void utils::show_error(QString error_msg)
     error_message->showMessage(error_msg);
 }
 
-void utils::show_info(QWidget* parent, QString info_title, QString info_msg)
-{
-    QMessageBox::information(parent, info_title, info_msg);
-}
-
 QList<QPair<QString, QString>> utils::read_file(QString file_name)
 {
     QList<QPair<QString, QString>> test_list;
@@ -112,7 +107,7 @@ QList<QPair<QString, QString>> utils::read_file(QString file_name)
     return test_list;
 }
 
-void utils::test(QWidget* parent, QString test_file_name, QString check_file_name)
+void utils::test(QString test_file_name, QString check_file_name)
 {
     UserDictionary test_dict(0, "dict_name");
 
@@ -129,16 +124,17 @@ void utils::test(QWidget* parent, QString test_file_name, QString check_file_nam
     int dict_count = test_dict.size();
     int test_count = check_values.size();
 
-    QString info = QString("%1 %2\n").arg(QString::number(dict_count),
-                                          QString::number(test_count));
+    qDebug() << "test";
+    qDebug() << QString("%1 %2").arg(QString::number(dict_count),
+                                     QString::number(test_count)) << endl;
 
     if(dict_count != test_count)
     {
-        info += "NOT EQUAL\n";
+         qDebug() << "NOT EQUAL";
     }
     else
     {
-        info += "EQUAL\n";
+         qDebug() << "EQUAL";
 
         for(int i = 0; i < test_count; ++i)
         {
@@ -147,13 +143,11 @@ void utils::test(QWidget* parent, QString test_file_name, QString check_file_nam
             QString translate_two = test_dict[word_value];
             bool translate_equal = translate_one.compare(translate_two) == 0;
 
-            info += QString("%1 (%2 == %3) = %4\n").arg(word_value,
-                                                        translate_one, translate_two,
-                                                        QString::number(translate_equal));
+            qDebug() << QString("%1 (%2 == %3) = %4").arg(word_value,
+                                                          translate_one, translate_two,
+                                                          QString::number(translate_equal));
         }
     }
-
-    utils::show_info(parent, "Information", info);
 }
 
 double utils::get_doubled_random()

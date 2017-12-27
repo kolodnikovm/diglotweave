@@ -462,10 +462,10 @@ moc_logindialog.cpp: ui_logindialog.h \
 
 moc_registerdialog.cpp: ui_registerdialog.h \
 		../diglot-weave-gui/utils.h \
-		../diglot-weave-gui/mainwindow.h \
-		../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/mainwindow.h \
+		../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/wordrecord.h \
 		../diglot-weave-gui/usertextedit.h \
 		../diglot-weave-gui/useraccount.h \
@@ -622,16 +622,18 @@ logindialog.o: ../diglot-weave-gui/dialogs/logindialog.cpp ../diglot-weave-gui/d
 registerdialog.o: ../diglot-weave-gui/dialogs/registerdialog.cpp ../diglot-weave-gui/dialogs/registerdialog.h \
 		ui_registerdialog.h \
 		../diglot-weave-gui/utils.h \
-		../diglot-weave-gui/mainwindow.h \
-		../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/mainwindow.h \
+		../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/wordrecord.h \
 		../diglot-weave-gui/usertextedit.h \
 		../diglot-weave-gui/useraccount.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o registerdialog.o ../diglot-weave-gui/dialogs/registerdialog.cpp
 
-utils.o: ../diglot-weave-gui/utils.cpp ../diglot-weave-gui/utils.h
+utils.o: ../diglot-weave-gui/utils.cpp ../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/userdictionary.h \
+		../diglot-weave-gui/dictrecord.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o utils.o ../diglot-weave-gui/utils.cpp
 
 loadtextdialog.o: ../diglot-weave-gui/dialogs/loadtextdialog.cpp ../diglot-weave-gui/dialogs/loadtextdialog.h \
