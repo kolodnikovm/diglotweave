@@ -24,6 +24,7 @@ public slots:
     void add_dictionary();
     void remove_dictionary();
     void add_word();
+    void choose_word();
     void remove_word();
 
 private slots:

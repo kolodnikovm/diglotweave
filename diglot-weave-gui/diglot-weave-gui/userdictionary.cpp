@@ -36,10 +36,15 @@ void UserDictionary::remove_word(QString word, QString translate)
 
 DictRecord& UserDictionary::operator [](const int index)
 {
-    if(index >= 0 && index <= this->words.size())
-        return this->words[index];
+    if(index >= 0 && index < this->words.size())
+        return this->GetRecord(index);
     else
         return *(new DictRecord("NONE", "NONE"));
+}
+
+DictRecord& UserDictionary::GetRecord(int index)
+{
+    return this->words[index];
 }
 
 QString UserDictionary::operator [](const QString word_value)
@@ -86,7 +91,8 @@ bool UserDictionary::CheckDuplicates(bool output_error)
 
     if(found)
     {
-        utils::show_error("В одном из словарей обнаружены дублирующие записи.");
+        if(output_error)
+            utils::show_error("В одном из словарей обнаружены дублирующие записи.");
 
         for(int i = this->words.size() - 1; i >= 0; --i)
             if(dupl[i])

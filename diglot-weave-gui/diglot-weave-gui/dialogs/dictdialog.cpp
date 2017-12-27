@@ -16,6 +16,7 @@ DictDialog::DictDialog( QWidget * parent, UserAccount* user_account,
     connect(ui.closeDictButton, SIGNAL (released()), this, SLOT (close()));
 
     connect(ui.dictList, SIGNAL (itemSelectionChanged()), this, SLOT (rewrite_word_table()));
+    connect(ui.dictContentTable, SIGNAL (itemSelectionChanged()), this, SLOT(choose_word()));
 
     this->rewrite_dict_list();
 }
@@ -123,11 +124,38 @@ void DictDialog::add_word()
         if(!translate_valid)
             return;
 
-        this->user_account->GetDictionary(dict_index)->add_word(word_value, translate_value);
-        this->user_account->CheckDuplicates(true);
+        UserDictionary* dict_now = this->user_account->GetDictionary(dict_index);
+        bool modified = false;
+
+        for(int i = 0, word_count = dict_now->size(); i < word_count; ++i)
+        {
+            if(word_value == dict_now->GetRecord(i).GetWord())
+            {
+                dict_now->GetRecord(i).ModifyTranslate(translate_value);
+                modified = true;
+                break;
+            }
+        }
+
+        if(!modified)
+        {
+            dict_now->add_word(word_value, translate_value);
+            this->user_account->CheckDuplicates(true);
+        }
 
         this->rewrite_word_table();
     }
+}
+
+void DictDialog::choose_word()
+{
+    int current_row = ui.dictContentTable->currentRow();
+
+    QString word = ui.dictContentTable->item(current_row, 0)->text();
+    QString translate = ui.dictContentTable->item(current_row, 1)->text();
+
+    ui.dictWordEdit->setText(word);
+    ui.dictTranslateEdit->setText(translate);
 }
 
 void DictDialog::remove_word()

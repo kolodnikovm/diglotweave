@@ -21,6 +21,7 @@ public:
     void remove_word(QString word, QString translate);
     int size();
     DictRecord& operator[] (const int index);
+    DictRecord& GetRecord(int index);
     QString operator[] (const QString word);
     bool CheckDuplicates(bool output_error = false);
     bool CheckDuplicates(UserDictionary* dict_two, bool output_error);

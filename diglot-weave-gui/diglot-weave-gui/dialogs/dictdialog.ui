@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>485</width>
-    <height>700</height>
+    <width>595</width>
+    <height>717</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -102,7 +102,7 @@
        <item>
         <widget class="QPushButton" name="addWordButton">
          <property name="text">
-          <string>Добавить слово</string>
+          <string>Изменить слово</string>
          </property>
         </widget>
        </item>
