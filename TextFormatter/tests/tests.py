@@ -31,5 +31,8 @@ class FormatterTests(unittest.TestCase):
         tag = self.tf.morph.parse('изучала')[0].tag
         self.assertEqual(self.tf.inflector.inflect_verb('study', tag), expected)
 
+    def tearDown(self):
+        self.tf.text_file.close()
+
 if __name__ == '__main__':
     unittest.main()
