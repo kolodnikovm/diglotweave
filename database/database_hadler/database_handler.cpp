@@ -74,7 +74,7 @@ void database_handler::register_new_user(QString username, QString pass)
     QSqlQuery qsqlq = SQL_query(qstr);
 }
 
-QList<QPair<QString, QString>> database_handler::get_dictionarylist_by_username(QString username)
+QList<QPair<QString, int>> database_handler::get_dictionarylist_by_username(QString username)
 {
     // DML query execution
     QString qstr = "SELECT User_dict_Name, User_dict_id FROM User_dictionaries WHERE User_id IN (SELECT User_id FROM Users WHERE User_name = '%1')";
@@ -83,13 +83,13 @@ QList<QPair<QString, QString>> database_handler::get_dictionarylist_by_username(
 
     QSqlRecord rec = qsqlq.record();
 
-    QList<QPair<QString, QString>> dictionary_by_user_list;
-    QPair<QString, QString> user_dictionary;
+    QList<QPair<QString, int>> dictionary_by_user_list;
+    QPair<QString, int> user_dictionary;
 
     while (qsqlq.next())
     {
         user_dictionary.first = qsqlq.value(rec.indexOf("User_dict_Name")).toString();
-        user_dictionary.second = qsqlq.value(rec.indexOf("User_dict_id")).toString();
+        user_dictionary.second = qsqlq.value(rec.indexOf("User_dict_id")).toInt();
         dictionary_by_user_list.push_back(user_dictionary);
     }
 
@@ -155,10 +155,7 @@ void database_handler::delete_user_dictionary(int dict_id)
     QString qstr1 = "DELETE FROM User_dictionaries WHERE User_dict_id = %1";
     qstr1 = qstr1.arg(dict_id);
     QSqlQuery qsqlq1 = SQL_query(qstr1);
-
-    QString qstr2 = "DELETE FROM WHERE User_dict_id = %1";
-    qstr2 = qstr2.arg(dict_id);
-    QSqlQuery qsqlq2 = SQL_query(qstr2);
+    database_handler::delete_all_words_from_user_dict(dict_id);
 }
 
 void database_handler::delete_all_words_from_user_dict(int dict_id)
@@ -178,7 +175,7 @@ void database_handler::delete_word_from_user_dict(QString word, QString translat
     qsqlq1.next();
     int i = qsqlq1.value(0).toInt();
 
-    QString qstr2 = "DELETE FROM Translations WHERE User_dict_id = %1 AND Gdict_word_id = %2 ";
+    QString qstr2 = "DELETE FROM Translations WHERE User_dict_id = '%1' AND Gdict_word_id = '%2'";
     qstr2 = qstr2.arg(dict_id).arg(i);
     QSqlQuery qsqlq2 = SQL_query(qstr2);
 }

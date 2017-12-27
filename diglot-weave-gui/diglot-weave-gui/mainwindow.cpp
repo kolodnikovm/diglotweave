@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->action_exit, SIGNAL(triggered()), this, SLOT(close()));
 
-    utils::test("test_file.txt", "check_file.txt");
+    //utils::test("test_file.txt", "check_file.txt");
 }
 
 void MainWindow::show_login_dialog()
