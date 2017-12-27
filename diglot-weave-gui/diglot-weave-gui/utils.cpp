@@ -2,7 +2,7 @@
 
 utils::utils( ){ }
 
-const QString utils::text_open_tag = QString("<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">");
+const QString utils::text_open_tag = QString("<p align=\"justify\" style=\" font-weight:400; -qt-block-indent:0; text-indent:0px;\">");
 const QString utils::text_close_tag = QString("</p>");
 
 const QString utils::highlight_open_tag = QString("<span style=\" font-weight:600; color:#ef2929;\">");
