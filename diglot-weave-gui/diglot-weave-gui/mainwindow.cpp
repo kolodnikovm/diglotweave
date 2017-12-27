@@ -20,7 +20,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->dbHandler = new database_handler();
     this->dbHandler->connect_to_database();
-
     this->userAccount = UserAccount(this->dbHandler);
 
     show_login_dialog();

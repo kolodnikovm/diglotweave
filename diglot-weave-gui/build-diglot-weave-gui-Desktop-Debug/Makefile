@@ -424,8 +424,8 @@ compiler_moc_header_clean:
 moc_mainwindow.cpp: ../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
-		../diglot-weave-gui/wordrecord.h \
 		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/wordrecord.h \
 		../diglot-weave-gui/usertextedit.h \
 		../diglot-weave-gui/useraccount.h \
 		../diglot-weave-gui/database_handler.h \
@@ -443,10 +443,11 @@ moc_aboutdialog.cpp: ui_aboutdialog.h \
 moc_dictdialog.cpp: ui_dictdialog.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/utils.h \
 		../diglot-weave-gui/useraccount.h \
+		../diglot-weave-gui/database_handler.h \
 		../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/wordrecord.h \
-		../diglot-weave-gui/utils.h \
 		../diglot-weave-gui/usertextedit.h \
 		../diglot-weave-gui/dialogs/dictdialog.h \
 		moc_predefs.h \
@@ -457,12 +458,12 @@ moc_logindialog.cpp: ui_logindialog.h \
 		../diglot-weave-gui/useraccount.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/database_handler.h \
 		../diglot-weave-gui/mainwindow.h \
 		../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/wordrecord.h \
-		../diglot-weave-gui/utils.h \
 		../diglot-weave-gui/usertextedit.h \
-		../diglot-weave-gui/database_handler.h \
 		../diglot-weave-gui/dialogs/logindialog.h \
 		moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
@@ -488,6 +489,7 @@ moc_loadtextdialog.cpp: ui_loadtextdialog.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
 		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/database_handler.h \
 		../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/wordrecord.h \
 		../diglot-weave-gui/usertextedit.h \
@@ -500,9 +502,10 @@ moc_textparamsdialog.cpp: ui_textparamsdialog.h \
 		../diglot-weave-gui/useraccount.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/database_handler.h \
 		../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/wordrecord.h \
-		../diglot-weave-gui/utils.h \
 		../diglot-weave-gui/usertextedit.h \
 		../diglot-weave-gui/dialogs/textparamsdialog.h \
 		moc_predefs.h \
@@ -520,8 +523,8 @@ ui_mainwindow.h: ../diglot-weave-gui/mainwindow.ui \
 		../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
-		../diglot-weave-gui/wordrecord.h \
-		../diglot-weave-gui/utils.h
+		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/wordrecord.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic ../diglot-weave-gui/mainwindow.ui -o ui_mainwindow.h
 
 ui_aboutdialog.h: ../diglot-weave-gui/dialogs/aboutdialog.ui \
@@ -562,8 +565,8 @@ main.o: ../diglot-weave-gui/main.cpp ../diglot-weave-gui/mainwindow.h \
 		../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
-		../diglot-weave-gui/wordrecord.h \
 		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/wordrecord.h \
 		../diglot-weave-gui/usertextedit.h \
 		../diglot-weave-gui/useraccount.h \
 		../diglot-weave-gui/database_handler.h
@@ -573,8 +576,8 @@ mainwindow.o: ../diglot-weave-gui/mainwindow.cpp ../diglot-weave-gui/mainwindow.
 		../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
-		../diglot-weave-gui/wordrecord.h \
 		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/wordrecord.h \
 		../diglot-weave-gui/usertextedit.h \
 		../diglot-weave-gui/useraccount.h \
 		../diglot-weave-gui/database_handler.h \
@@ -599,8 +602,8 @@ dictrecord.o: ../diglot-weave-gui/dictrecord.cpp ../diglot-weave-gui/dictrecord.
 formattedtext.o: ../diglot-weave-gui/formattedtext.cpp ../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
-		../diglot-weave-gui/wordrecord.h \
-		../diglot-weave-gui/utils.h
+		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/wordrecord.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o formattedtext.o ../diglot-weave-gui/formattedtext.cpp
 
 aboutdialog.o: ../diglot-weave-gui/dialogs/aboutdialog.cpp ../diglot-weave-gui/dialogs/aboutdialog.h \
@@ -611,10 +614,11 @@ dictdialog.o: ../diglot-weave-gui/dialogs/dictdialog.cpp ../diglot-weave-gui/dia
 		ui_dictdialog.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/utils.h \
 		../diglot-weave-gui/useraccount.h \
+		../diglot-weave-gui/database_handler.h \
 		../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/wordrecord.h \
-		../diglot-weave-gui/utils.h \
 		../diglot-weave-gui/usertextedit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dictdialog.o ../diglot-weave-gui/dialogs/dictdialog.cpp
 
@@ -623,12 +627,12 @@ logindialog.o: ../diglot-weave-gui/dialogs/logindialog.cpp ../diglot-weave-gui/d
 		../diglot-weave-gui/useraccount.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/database_handler.h \
 		../diglot-weave-gui/mainwindow.h \
 		../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/wordrecord.h \
-		../diglot-weave-gui/utils.h \
-		../diglot-weave-gui/usertextedit.h \
-		../diglot-weave-gui/database_handler.h
+		../diglot-weave-gui/usertextedit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o logindialog.o ../diglot-weave-gui/dialogs/logindialog.cpp
 
 registerdialog.o: ../diglot-weave-gui/dialogs/registerdialog.cpp ../diglot-weave-gui/dialogs/registerdialog.h \
@@ -655,6 +659,7 @@ loadtextdialog.o: ../diglot-weave-gui/dialogs/loadtextdialog.cpp ../diglot-weave
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
 		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/database_handler.h \
 		../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/wordrecord.h \
 		../diglot-weave-gui/usertextedit.h
@@ -664,17 +669,20 @@ usertextedit.o: ../diglot-weave-gui/usertextedit.cpp ../diglot-weave-gui/usertex
 		../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
-		../diglot-weave-gui/wordrecord.h \
-		../diglot-weave-gui/utils.h
+		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/wordrecord.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o usertextedit.o ../diglot-weave-gui/usertextedit.cpp
 
 userdictionary.o: ../diglot-weave-gui/userdictionary.cpp ../diglot-weave-gui/userdictionary.h \
-		../diglot-weave-gui/dictrecord.h
+		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/utils.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o userdictionary.o ../diglot-weave-gui/userdictionary.cpp
 
 useraccount.o: ../diglot-weave-gui/useraccount.cpp ../diglot-weave-gui/useraccount.h \
 		../diglot-weave-gui/userdictionary.h \
-		../diglot-weave-gui/dictrecord.h
+		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/database_handler.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o useraccount.o ../diglot-weave-gui/useraccount.cpp
 
 textparamsdialog.o: ../diglot-weave-gui/dialogs/textparamsdialog.cpp ../diglot-weave-gui/dialogs/textparamsdialog.h \
@@ -682,9 +690,10 @@ textparamsdialog.o: ../diglot-weave-gui/dialogs/textparamsdialog.cpp ../diglot-w
 		../diglot-weave-gui/useraccount.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/database_handler.h \
 		../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/wordrecord.h \
-		../diglot-weave-gui/utils.h \
 		../diglot-weave-gui/usertextedit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o textparamsdialog.o ../diglot-weave-gui/dialogs/textparamsdialog.cpp
 

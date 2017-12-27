@@ -154,3 +154,12 @@ double utils::get_doubled_random()
 {
     return double(qrand()) / double(RAND_MAX);
 }
+
+void utils::run_python(QString in_text, QString in_vocab, QString out_vocab)
+{
+    QString program = "./run_python.sh";
+    QStringList arguments;
+    arguments << in_text << in_vocab << out_vocab;
+
+    QProcess::execute(program, arguments);
+}

@@ -11,6 +11,7 @@
 #include <QMessageBox>
 #include <QTextStream>
 #include <QDebug>
+#include <QProcess>
 
 #include "userdictionary.h"
 
@@ -35,6 +36,8 @@ public:
 
     static QList<QPair<QString, QString>> read_file(QString file_name);
     static void test(QString test_file, QString check_file);
+
+    static void run_python(QString in_text, QString in_dict, QString out_dict);
 };
 
 #endif // UTILS_H
