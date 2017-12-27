@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QList>
+#include <QPair>
 
 #include "dictrecord.h"
 #include "utils.h"
@@ -25,6 +26,9 @@ public:
     QString operator[] (const QString word);
     bool CheckDuplicates(bool output_error = false);
     bool CheckDuplicates(UserDictionary* dict_two, bool output_error);
+
+    QList<QPair<QString, QString>> GetWordPairs();
+    void SetWordPairs(QList<QPair<QString, QString>> words);
 };
 
 #endif // USERDICTIONARY_H

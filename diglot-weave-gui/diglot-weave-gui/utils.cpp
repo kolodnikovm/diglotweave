@@ -155,11 +155,72 @@ double utils::get_doubled_random()
     return double(qrand()) / double(RAND_MAX);
 }
 
-void utils::run_python(QString in_text, QString in_vocab, QString out_vocab)
+void utils::dict_save(QString in_dict_name, QList<QPair<QString, QString>> in_dict)
+{
+    QFile file(in_dict_name);
+
+    if (!file.open(QIODevice::WriteOnly))
+        return;
+
+    QTextStream out(&file);
+
+    for(int i = 0, len = in_dict.size(); i < len; ++i)
+    {
+        QString word_value = in_dict[i].first;
+        QString translate_value = in_dict[i].second;
+        out << translate_value << "," << word_value << "\n";
+    }
+
+    file.close();
+}
+
+void utils::text_save(QString in_text_name, QString text_full)
+{
+    QFile file(in_text_name);
+
+    if (!file.open(QIODevice::WriteOnly))
+        return;
+
+    QTextStream out(&file);
+    out << text_full;
+
+    file.close();
+}
+
+QList<QPair<QString, QString>> utils::dict_load(QString out_dict_name)
+{
+    QList<QPair<QString, QString>> dict_new;
+
+    QFile file(out_dict_name);
+
+    if (!file.open(QIODevice::ReadOnly))
+        return QList<QPair<QString, QString>>();
+
+    QTextStream in(&file);
+
+    while(!in.atEnd())
+    {
+        QStringList translate_word = in.readLine().split(',');
+
+        if(translate_word.size() == 2)
+        {
+            QString word_value = translate_word[0];
+            QString translate_value = translate_word[1];
+            dict_new.append(QPair<QString, QString>(word_value, translate_value));
+        }
+        else
+            break;
+    }
+
+    file.close();
+    return dict_new;
+}
+
+void utils::run_python(QString in_text, QString in_dict, QString out_dict)
 {
     QString program = "./run_python.sh";
     QStringList arguments;
-    arguments << in_text << in_vocab << out_vocab;
+    arguments << in_text << in_dict << out_dict;
 
     QProcess::execute(program, arguments);
 }

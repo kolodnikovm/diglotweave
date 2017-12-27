@@ -37,7 +37,10 @@ public:
     static QList<QPair<QString, QString>> read_file(QString file_name);
     static void test(QString test_file, QString check_file);
 
-    static void run_python(QString in_text, QString in_dict, QString out_dict);
+    static void dict_save(QString in_dict_name, QList<QPair<QString, QString>> in_dict);
+    static void text_save(QString in_text_name, QString text_full);
+    static void run_python(QString in_text_name, QString in_dict_name, QString out_dict_name);
+    static QList<QPair<QString, QString>> dict_load(QString out_dict_name);
 };
 
 #endif // UTILS_H

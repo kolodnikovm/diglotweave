@@ -142,3 +142,23 @@ bool UserDictionary::CheckDuplicates(UserDictionary *dict_two, bool output_error
 
     return found;
 }
+
+QList<QPair<QString, QString>> UserDictionary::GetWordPairs()
+{
+    QList<QPair<QString, QString>> words;
+
+    for(int i = 0, len = this->size(); i < len; ++i)
+        words.append(QPair<QString, QString>(this->words[i].GetWord(),
+                                             this->words[i].GetTranslate()));
+
+    return words;
+}
+
+void UserDictionary::SetWordPairs(QList<QPair<QString, QString>> words)
+{
+    this->words.clear();
+
+    for(int i = 0, len = words.size(); i < len; ++i)
+        this->words.append(DictRecord(words[i].first,
+                                      words[i].second));
+}
