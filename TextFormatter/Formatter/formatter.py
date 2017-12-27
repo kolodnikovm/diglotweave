@@ -3,7 +3,7 @@
 import re
 import csv
 import pymorphy2 as pm2
-from .wordinflector.inflector import Inflector
+from .WordInflector.inflector import Inflector
 
 
 class TextFormatter:
@@ -66,6 +66,7 @@ class TextFormatter:
         with open(path_name, 'w+', newline='', encoding='utf-8') as result_dict:
             writer = csv.writer(result_dict)
             words_to_swap = self.generate_words_to_swap()
+            print(words_to_swap)
             for eng_word in words_to_swap:
                 for word in words_to_swap[eng_word]:
                     writer.writerow([word, eng_word])

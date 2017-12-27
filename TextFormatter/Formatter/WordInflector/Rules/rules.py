@@ -35,9 +35,9 @@ def inflect_verb(verb, tag):
         # TODO уточнить правила постановки в прошедшее
         if tense == 'past':
             if verb[-1] in VOWELS or (verb[-1] in CONSONANTS and verb[-1] != 'x'):
+                if verb[-2] in CONSONANTS and verb[-1] == 'y':
+                    return verb[:-1] +'ied'
                 return verb + 'd'
-            elif verb[-2] in CONSONANTS and verb[-1] == 'y':
-                return verb[:-1] +'ied'
             return verb + 'ed'
         elif tense == 'futr':
             return '(will) ' + verb
