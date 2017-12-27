@@ -1,6 +1,6 @@
 """ Переводит слова на англ. языке в нужную форму """
 
-from .rules.rules import inflect_verb, inflect_noun
+from .Rules.rules import inflect_verb, inflect_noun
 
 class Inflector:
 
