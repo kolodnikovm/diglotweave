@@ -96,6 +96,16 @@ QList<QPair<QString, int>> database_handler::get_dictionarylist_by_username(QStr
     return dictionary_by_user_list;
 }
 
+int database_handler::get_dictionary_id_by_dict_name(QString dict_name)
+{
+    QString qstr = "SELECT User_dict_id FROM User_dictionaries WHERE User_dict_name = '%1'";
+    qstr = qstr.arg(dict_name);
+    QSqlQuery qsqlq = SQL_query(qstr);
+    qsqlq.first();
+    int i = qsqlq.value(0).toInt();
+    return i;
+}
+
 QList<QPair<QString, QString>> database_handler::get_dictionary_by_dict_id(int dict_id)
 {
     // DML query execution
@@ -134,10 +144,19 @@ void database_handler::add_new_user_dictionary(QString dict_name, int user_id)
 
 void database_handler::add_new_word_to_user_dict(QString word, QString translation, int dict_id)
 {
-    // check if that name exist and insertion query
-    QString qstr1 = "INSERT INTO Global_dictionary VALUES (null, '%1', '%2')";
-    qstr1 = qstr1.arg(word).arg(translation);
-    QSqlQuery qsqlq1 = SQL_query(qstr1);
+    QString qstr0 = "SELECT EXISTS(SELECT * FROM Global_dictionary WHERE Word = '%1' AND Translation = '%2' LIMIT 1)";
+    qstr0 = qstr0.arg(word).arg(translation);
+    QSqlQuery qsqlq0 = SQL_query(qstr0);
+    qsqlq0.next();
+    int _i = qsqlq0.value(0).toInt();
+
+    if (!_i)
+    {
+        QString qstr1 = "INSERT INTO Global_dictionary VALUES (null, '%1', '%2')";
+        qstr1 = qstr1.arg(word).arg(translation);
+        QSqlQuery qsqlq1 = SQL_query(qstr1);
+    }
+
     // recieve id of added word and insert it and dict id to joint table
     QString qstr2 = "SELECT Gdict_word_id FROM Global_dictionary WHERE Word = '%1' AND Translation = '%2'";
     qstr2 = qstr2.arg(word).arg(translation);

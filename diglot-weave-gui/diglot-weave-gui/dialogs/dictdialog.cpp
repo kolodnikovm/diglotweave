@@ -79,6 +79,8 @@ void DictDialog::import_dictionary()
 
     if(failed)
         this->user_account->DeleteDictionary(dict_index);
+    else
+        this->user_account->CheckDuplicates();
 
     f.close();
     this->rewrite_dict_list();
@@ -122,6 +124,8 @@ void DictDialog::add_word()
             return;
 
         this->user_account->GetDictionary(dict_index)->add_word(word_value, translate_value);
+        this->user_account->CheckDuplicates(true);
+
         this->rewrite_word_table();
     }
 }

@@ -30,7 +30,10 @@ public:
     // get list of pairs (name, id) of specific user's dictionaries
     QList<QPair<QString, int>> get_dictionarylist_by_username(QString);
 
-    // get list of words and translations of specific dictionary
+    // get dictionary's id by dict name
+    int get_dictionary_id_by_dict_name(QString);
+
+    // get list of words and translations of specific dictionary by id
     QList<QPair<QString, QString>> get_dictionary_by_dict_id(int);
 
     // add new user dictionary, arguments: dictionary name, user_id

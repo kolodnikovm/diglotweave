@@ -36,7 +36,7 @@ public slots:
     void show_params_dialog();
     void show_about_dialog();
 
-    void close();
+    void exit_application();
 
 private:
     Ui::MainWindow *ui;

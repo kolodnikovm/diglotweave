@@ -3,7 +3,9 @@
 
 #include <QString>
 #include <QList>
+
 #include "userdictionary.h"
+#include "database_handler.h"
 
 class UserAccount
 {
@@ -15,6 +17,7 @@ private:
 
     QList<UserDictionary> dictionaries;
     UserDictionary global_dictionary;
+    database_handler* db_handler;
 
     int dict_id;
 
@@ -23,13 +26,18 @@ public:
     bool registered;
 
     UserAccount();
+    UserAccount(database_handler* db_handler);
 
     void LogIn(int account_id, QString login, QString password);
+    void LoadData();
+    void SaveData();
 
-    void CreateDictionary(QString dict_name);
+    void CreateDictionary(QString dict_name, int dict_id = -1);
+    void CheckDuplicates(bool output_error = false);
     void MakeGlobalDictionary();
     UserDictionary* GetDictionary();
     UserDictionary* GetDictionary(int dict_id);
+    UserDictionary* GetDictionaryByOwnID(int own_dict_id);
     void SetDictionary(int dict_id);
     int GetDictionariesCount();
     void DeleteDictionary(int dict_id);

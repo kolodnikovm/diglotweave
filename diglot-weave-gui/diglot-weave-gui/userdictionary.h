@@ -3,14 +3,16 @@
 
 #include <QString>
 #include <QList>
+
 #include "dictrecord.h"
+#include "utils.h"
 
 class UserDictionary
 {
 protected:
     QList<DictRecord> words;
-    int dict_id;
 public:
+    int dict_id;
     QString dict_name;
 
     UserDictionary();
@@ -20,7 +22,8 @@ public:
     int size();
     DictRecord& operator[] (const int index);
     QString operator[] (const QString word);
-    void CheckDuplicates();
+    bool CheckDuplicates(bool output_error = false);
+    bool CheckDuplicates(UserDictionary* dict_two, bool output_error);
 };
 
 #endif // USERDICTIONARY_H
