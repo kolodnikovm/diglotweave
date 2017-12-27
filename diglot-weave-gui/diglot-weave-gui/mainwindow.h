@@ -9,6 +9,7 @@
 #include "usertextedit.h"
 #include "userdictionary.h"
 #include "useraccount.h"
+#include "database_handler.h"
 
 namespace Ui {
 class MainWindow;
@@ -25,6 +26,7 @@ public:
     UserAccount userAccount;
     FormattedText* formattedText;
     UserTextEdit* userTextEdit;
+    database_handler* dbHandler;
 
 public slots:
     void show_login_dialog();
@@ -34,7 +36,7 @@ public slots:
     void show_params_dialog();
     void show_about_dialog();
 
-    void close();
+    void exit_application();
 
 private:
     Ui::MainWindow *ui;

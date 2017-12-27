@@ -29,6 +29,8 @@ class Ui_DictDialog
 public:
     QVBoxLayout *verticalLayout_6;
     QVBoxLayout *verticalLayout_5;
+    QHBoxLayout *horizontalLayout_11;
+    QPushButton *importDictButton;
     QHBoxLayout *horizontalLayout_2;
     QHBoxLayout *horizontalLayout_4;
     QLineEdit *dictNameEdit;
@@ -36,6 +38,8 @@ public:
     QPushButton *addDictButton;
     QHBoxLayout *horizontalLayout;
     QListWidget *dictList;
+    QHBoxLayout *horizontalLayout_12;
+    QPushButton *removeDictButton;
     QHBoxLayout *horizontalLayout_10;
     QHBoxLayout *horizontalLayout_7;
     QLineEdit *dictWordEdit;
@@ -45,6 +49,8 @@ public:
     QPushButton *addWordButton;
     QVBoxLayout *verticalLayout_8;
     QTableWidget *dictContentTable;
+    QHBoxLayout *horizontalLayout_6;
+    QPushButton *removeWordButton;
     QHBoxLayout *horizontalLayout_5;
     QPushButton *closeDictButton;
 
@@ -52,11 +58,21 @@ public:
     {
         if (DictDialog->objectName().isEmpty())
             DictDialog->setObjectName(QStringLiteral("DictDialog"));
-        DictDialog->resize(420, 514);
+        DictDialog->resize(595, 717);
         verticalLayout_6 = new QVBoxLayout(DictDialog);
         verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
         verticalLayout_5 = new QVBoxLayout();
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
+        horizontalLayout_11 = new QHBoxLayout();
+        horizontalLayout_11->setObjectName(QStringLiteral("horizontalLayout_11"));
+        importDictButton = new QPushButton(DictDialog);
+        importDictButton->setObjectName(QStringLiteral("importDictButton"));
+
+        horizontalLayout_11->addWidget(importDictButton);
+
+
+        verticalLayout_5->addLayout(horizontalLayout_11);
+
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_4 = new QHBoxLayout();
@@ -94,6 +110,16 @@ public:
 
 
         verticalLayout_6->addLayout(verticalLayout_5);
+
+        horizontalLayout_12 = new QHBoxLayout();
+        horizontalLayout_12->setObjectName(QStringLiteral("horizontalLayout_12"));
+        removeDictButton = new QPushButton(DictDialog);
+        removeDictButton->setObjectName(QStringLiteral("removeDictButton"));
+
+        horizontalLayout_12->addWidget(removeDictButton);
+
+
+        verticalLayout_6->addLayout(horizontalLayout_12);
 
         horizontalLayout_10 = new QHBoxLayout();
         horizontalLayout_10->setObjectName(QStringLiteral("horizontalLayout_10"));
@@ -146,6 +172,16 @@ public:
 
         verticalLayout_6->addLayout(verticalLayout_8);
 
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
+        removeWordButton = new QPushButton(DictDialog);
+        removeWordButton->setObjectName(QStringLiteral("removeWordButton"));
+
+        horizontalLayout_6->addWidget(removeWordButton);
+
+
+        verticalLayout_6->addLayout(horizontalLayout_6);
+
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
         closeDictButton = new QPushButton(DictDialog);
@@ -165,11 +201,14 @@ public:
     void retranslateUi(QDialog *DictDialog)
     {
         DictDialog->setWindowTitle(QApplication::translate("DictDialog", "\320\240\320\265\320\264\320\260\320\272\321\202\320\270\321\200\320\276\320\262\320\260\320\275\320\270\320\265 \321\201\320\273\320\276\320\262\320\260\321\200\320\265\320\271", Q_NULLPTR));
+        importDictButton->setText(QApplication::translate("DictDialog", "\320\230\320\274\320\277\320\276\321\200\321\202\320\270\321\200\320\276\320\262\320\260\321\202\321\214 \321\201\320\273\320\276\320\262\320\260\321\200\321\214", Q_NULLPTR));
         dictNameEdit->setPlaceholderText(QApplication::translate("DictDialog", "\320\275\320\260\320\267\320\262\320\260\320\275\320\270\320\265 \321\201\320\273\320\276\320\262\320\260\321\200\321\217", Q_NULLPTR));
         addDictButton->setText(QApplication::translate("DictDialog", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214 \321\201\320\273\320\276\320\262\320\260\321\200\321\214", Q_NULLPTR));
+        removeDictButton->setText(QApplication::translate("DictDialog", "\320\243\320\264\320\260\320\273\320\270\321\202\321\214 \321\201\320\273\320\276\320\262\320\260\321\200\321\214", Q_NULLPTR));
         dictWordEdit->setPlaceholderText(QApplication::translate("DictDialog", "\321\201\320\273\320\276\320\262\320\276", Q_NULLPTR));
         dictTranslateEdit->setPlaceholderText(QApplication::translate("DictDialog", "\320\277\320\265\321\200\320\265\320\262\320\276\320\264", Q_NULLPTR));
-        addWordButton->setText(QApplication::translate("DictDialog", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214 \321\201\320\273\320\276\320\262\320\276", Q_NULLPTR));
+        addWordButton->setText(QApplication::translate("DictDialog", "\320\230\320\267\320\274\320\265\320\275\320\270\321\202\321\214 \321\201\320\273\320\276\320\262\320\276", Q_NULLPTR));
+        removeWordButton->setText(QApplication::translate("DictDialog", "\320\243\320\264\320\260\320\273\320\270\321\202\321\214 \320\262\321\213\320\261\321\200\320\260\320\275\320\275\320\276\320\265 \321\201\320\273\320\276\320\262\320\276", Q_NULLPTR));
         closeDictButton->setText(QApplication::translate("DictDialog", "\320\227\320\260\320\272\321\200\321\213\321\202\321\214", Q_NULLPTR));
     } // retranslateUi
 

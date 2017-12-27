@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[9];
-    char stringdata0[133];
+    char stringdata0[144];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -39,13 +39,13 @@ QT_MOC_LITERAL(4, 51, 16), // "show_dict_dialog"
 QT_MOC_LITERAL(5, 68, 21), // "show_load_text_dialog"
 QT_MOC_LITERAL(6, 90, 18), // "show_params_dialog"
 QT_MOC_LITERAL(7, 109, 17), // "show_about_dialog"
-QT_MOC_LITERAL(8, 127, 5) // "close"
+QT_MOC_LITERAL(8, 127, 16) // "exit_application"
 
     },
     "MainWindow\0show_login_dialog\0\0"
     "show_register_dialog\0show_dict_dialog\0"
     "show_load_text_dialog\0show_params_dialog\0"
-    "show_about_dialog\0close"
+    "show_about_dialog\0exit_application"
 };
 #undef QT_MOC_LITERAL
 
@@ -95,7 +95,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 3: _t->show_load_text_dialog(); break;
         case 4: _t->show_params_dialog(); break;
         case 5: _t->show_about_dialog(); break;
-        case 6: _t->close(); break;
+        case 6: _t->exit_application(); break;
         default: ;
         }
     }

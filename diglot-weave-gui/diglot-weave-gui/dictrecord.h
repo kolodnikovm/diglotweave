@@ -13,6 +13,7 @@ public:
 
     QString GetWord();
     QString GetTranslate();
+    QString ModifyTranslate(QString translate_new);
 };
 
 #endif // WORDPAIR_H

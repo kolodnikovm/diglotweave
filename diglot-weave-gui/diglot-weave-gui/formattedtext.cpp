@@ -7,6 +7,8 @@ FormattedText::FormattedText()
 
 void FormattedText::SetText(QString text)
 {
+    this->text_full = text;
+
     QStringList string_list = text.split(' ');
     this->word_list.clear();
 
@@ -52,9 +54,9 @@ void FormattedText::SetText(QString text)
     FormatText();
 }
 
-void FormattedText::SetDict(UserDictionary* dict_now)
+void FormattedText::SetDict(UserDictionary* dict_init)
 {
-    this->dict_now = *dict_now;
+    this->dict_init = *dict_init;
     FormatText();
 }
 
@@ -66,6 +68,12 @@ void FormattedText::SetChangeWordFrequency(double change_freq)
 
 void FormattedText::FormatText()
 {
+    utils::dict_save("vocab.csv", this->dict_init.GetWordPairs());
+    utils::text_save("text.txt", this->text_full);
+    utils::run_python("text.txt", "vocab.csv", "vocab_out.csv");
+    this->dict_now = UserDictionary();
+    this->dict_now.SetWordPairs(utils::dict_load("vocab_out.csv"));
+
     for(int i = 0, len = this->word_list.size(); i < len; ++i)
     {
         this->word_list[i].Reset();

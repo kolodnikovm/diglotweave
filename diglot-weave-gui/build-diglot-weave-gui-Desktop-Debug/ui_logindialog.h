@@ -19,6 +19,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
@@ -41,12 +42,15 @@ public:
     QHBoxLayout *horizontalLayout_5;
     QPushButton *loginLoginButton;
     QPushButton *loginCancelButton;
+    QSpacerItem *horizontalSpacer;
+    QVBoxLayout *verticalLayout_3;
+    QPushButton *regDialogButton;
 
     void setupUi(QDialog *LoginDialog)
     {
         if (LoginDialog->objectName().isEmpty())
             LoginDialog->setObjectName(QStringLiteral("LoginDialog"));
-        LoginDialog->resize(400, 115);
+        LoginDialog->resize(400, 176);
         verticalLayout_2 = new QVBoxLayout(LoginDialog);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         verticalLayout = new QVBoxLayout();
@@ -120,6 +124,20 @@ public:
 
         verticalLayout_2->addLayout(horizontalLayout_5);
 
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        verticalLayout_2->addItem(horizontalSpacer);
+
+        verticalLayout_3 = new QVBoxLayout();
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        regDialogButton = new QPushButton(LoginDialog);
+        regDialogButton->setObjectName(QStringLiteral("regDialogButton"));
+
+        verticalLayout_3->addWidget(regDialogButton);
+
+
+        verticalLayout_2->addLayout(verticalLayout_3);
+
 
         retranslateUi(LoginDialog);
 
@@ -134,6 +152,7 @@ public:
         loginPasswordLabel->setText(QApplication::translate("LoginDialog", "\320\237\320\260\321\200\320\276\320\273\321\214", Q_NULLPTR));
         loginLoginButton->setText(QApplication::translate("LoginDialog", "Login", Q_NULLPTR));
         loginCancelButton->setText(QApplication::translate("LoginDialog", "Cancel", Q_NULLPTR));
+        regDialogButton->setText(QApplication::translate("LoginDialog", "\320\227\320\260\321\200\320\265\320\263\320\270\321\201\321\202\321\200\320\270\321\200\320\276\320\262\320\260\321\202\321\214\321\201\321\217", Q_NULLPTR));
     } // retranslateUi
 
 };

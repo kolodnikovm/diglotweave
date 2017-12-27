@@ -8,6 +8,8 @@
 #include "dialogs/aboutdialog.h"
 #include "dialogs/textparamsdialog.h"
 
+#include "utils.h"
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -15,7 +17,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     this->userTextEdit = this->findChild<UserTextEdit*>("mainTextEdit");
     this->formattedText = new FormattedText();
-    this->userAccount = UserAccount();
+
+    this->dbHandler = new database_handler();
+    this->dbHandler->connect_to_database();
+    this->userAccount = UserAccount(this->dbHandler);
 
     show_login_dialog();
 
@@ -26,14 +31,16 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->action_change_params, SIGNAL(triggered()), this, SLOT(show_params_dialog()));
     connect(ui->action_about, SIGNAL(triggered()), this, SLOT(show_about_dialog()));
 
-    connect(ui->action_exit, SIGNAL(triggered()), this, SLOT(close()));
+    connect(ui->action_exit, SIGNAL(triggered()), this, SLOT(exit_application()));
+
+    //utils::test("test_file.txt", "check_file.txt");
 }
 
 void MainWindow::show_login_dialog()
 {
     if(!this->userAccount.logged_in)
     {
-        LoginDialog* loginDialog = new LoginDialog(this, &(this->userAccount));
+        LoginDialog* loginDialog = new LoginDialog(this, &(this->userAccount), this->dbHandler);
         loginDialog->show();
     }
     else
@@ -44,7 +51,7 @@ void MainWindow::show_register_dialog()
 {
     if(!this->userAccount.logged_in)
     {
-        RegisterDialog* registerDialog = new RegisterDialog(this);
+        RegisterDialog* registerDialog = new RegisterDialog(this, this->dbHandler);
         registerDialog->show();
     }
     else
@@ -93,8 +100,9 @@ void MainWindow::show_about_dialog()
     aboutDialog->show();
 }
 
-void MainWindow::close()
+void MainWindow::exit_application()
 {
+    this->userAccount.SaveData();
     this->close();
 }
 

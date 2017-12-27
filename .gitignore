@@ -49,4 +49,3 @@ CMakeLists.txt.user*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-diglot-weave-gui/

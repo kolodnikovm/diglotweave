@@ -30,7 +30,7 @@
      <item>
       <widget class="QCheckBox" name="globalDictCheckBox">
        <property name="text">
-        <string>Использовать глобальный словарь</string>
+        <string>Использовать все словари</string>
        </property>
       </widget>
      </item>

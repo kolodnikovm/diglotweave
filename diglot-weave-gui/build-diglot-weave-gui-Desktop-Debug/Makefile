@@ -12,10 +12,10 @@ MAKEFILE      = Makefile
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB
 CFLAGS        = -m64 -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -m64 -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../diglot-weave-gui -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64
+INCPATH       = -I../diglot-weave-gui -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtSql -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64
 QMAKE         = /usr/lib/x86_64-linux-gnu/qt5/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -35,10 +35,10 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = diglot-weave-gui1.0.0
-DISTDIR = /home/thehemen/Документы/diglot-weave-gui/build-diglot-weave-gui-Desktop-Debug/.tmp/diglot-weave-gui1.0.0
+DISTDIR = /home/thehemen/Документы/diglotweave/diglot-weave-gui/build-diglot-weave-gui-Desktop-Debug/.tmp/diglot-weave-gui1.0.0
 LINK          = g++
 LFLAGS        = -m64
-LIBS          = $(SUBLIBS) -L/usr/X11R6/lib64 -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
+LIBS          = $(SUBLIBS) -L/usr/X11R6/lib64 -lQt5Widgets -lQt5Gui -lQt5Sql -lQt5Core -lGL -lpthread 
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -58,18 +58,18 @@ SOURCES       = ../diglot-weave-gui/main.cpp \
 		../diglot-weave-gui/dialogs/dictdialog.cpp \
 		../diglot-weave-gui/dialogs/logindialog.cpp \
 		../diglot-weave-gui/dialogs/registerdialog.cpp \
-		../diglot-weave-gui/dialogs/errordialog.cpp \
 		../diglot-weave-gui/utils.cpp \
 		../diglot-weave-gui/dialogs/loadtextdialog.cpp \
 		../diglot-weave-gui/usertextedit.cpp \
 		../diglot-weave-gui/userdictionary.cpp \
 		../diglot-weave-gui/useraccount.cpp \
-		../diglot-weave-gui/dialogs/textparamsdialog.cpp moc_mainwindow.cpp \
+		../diglot-weave-gui/dialogs/textparamsdialog.cpp \
+		../diglot-weave-gui/wordrecord.cpp \
+		../diglot-weave-gui/database_handler.cpp moc_mainwindow.cpp \
 		moc_aboutdialog.cpp \
 		moc_dictdialog.cpp \
 		moc_logindialog.cpp \
 		moc_registerdialog.cpp \
-		moc_errordialog.cpp \
 		moc_loadtextdialog.cpp \
 		moc_textparamsdialog.cpp
 OBJECTS       = main.o \
@@ -80,19 +80,19 @@ OBJECTS       = main.o \
 		dictdialog.o \
 		logindialog.o \
 		registerdialog.o \
-		errordialog.o \
 		utils.o \
 		loadtextdialog.o \
 		usertextedit.o \
 		userdictionary.o \
 		useraccount.o \
 		textparamsdialog.o \
+		wordrecord.o \
+		database_handler.o \
 		moc_mainwindow.o \
 		moc_aboutdialog.o \
 		moc_dictdialog.o \
 		moc_logindialog.o \
 		moc_registerdialog.o \
-		moc_errordialog.o \
 		moc_loadtextdialog.o \
 		moc_textparamsdialog.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -176,13 +176,14 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../diglot-weave-gui/dialogs/dictdialog.h \
 		../diglot-weave-gui/dialogs/logindialog.h \
 		../diglot-weave-gui/dialogs/registerdialog.h \
-		../diglot-weave-gui/dialogs/errordialog.h \
 		../diglot-weave-gui/utils.h \
 		../diglot-weave-gui/usertextedit.h \
 		../diglot-weave-gui/dialogs/loadtextdialog.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/useraccount.h \
-		../diglot-weave-gui/dialogs/textparamsdialog.h ../diglot-weave-gui/main.cpp \
+		../diglot-weave-gui/dialogs/textparamsdialog.h \
+		../diglot-weave-gui/wordrecord.h \
+		../diglot-weave-gui/database_handler.h ../diglot-weave-gui/main.cpp \
 		../diglot-weave-gui/mainwindow.cpp \
 		../diglot-weave-gui/dictrecord.cpp \
 		../diglot-weave-gui/formattedtext.cpp \
@@ -190,13 +191,14 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../diglot-weave-gui/dialogs/dictdialog.cpp \
 		../diglot-weave-gui/dialogs/logindialog.cpp \
 		../diglot-weave-gui/dialogs/registerdialog.cpp \
-		../diglot-weave-gui/dialogs/errordialog.cpp \
 		../diglot-weave-gui/utils.cpp \
 		../diglot-weave-gui/dialogs/loadtextdialog.cpp \
 		../diglot-weave-gui/usertextedit.cpp \
 		../diglot-weave-gui/userdictionary.cpp \
 		../diglot-weave-gui/useraccount.cpp \
-		../diglot-weave-gui/dialogs/textparamsdialog.cpp
+		../diglot-weave-gui/dialogs/textparamsdialog.cpp \
+		../diglot-weave-gui/wordrecord.cpp \
+		../diglot-weave-gui/database_handler.cpp
 QMAKE_TARGET  = diglot-weave-gui
 DESTDIR       = 
 TARGET        = diglot-weave-gui
@@ -205,7 +207,7 @@ TARGET        = diglot-weave-gui
 first: all
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h ui_aboutdialog.h ui_dictdialog.h ui_logindialog.h ui_registerdialog.h ui_errordialog.h ui_loadtextdialog.h ui_textparamsdialog.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_aboutdialog.h ui_dictdialog.h ui_logindialog.h ui_registerdialog.h ui_loadtextdialog.h ui_textparamsdialog.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../diglot-weave-gui/diglot-weave-gui.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -285,6 +287,7 @@ Makefile: ../diglot-weave-gui/diglot-weave-gui.pro /usr/lib/x86_64-linux-gnu/qt5
 		../diglot-weave-gui/diglot-weave-gui.pro \
 		/usr/lib/x86_64-linux-gnu/libQt5Widgets.prl \
 		/usr/lib/x86_64-linux-gnu/libQt5Gui.prl \
+		/usr/lib/x86_64-linux-gnu/libQt5Sql.prl \
 		/usr/lib/x86_64-linux-gnu/libQt5Core.prl
 	$(QMAKE) -o Makefile ../diglot-weave-gui/diglot-weave-gui.pro -spec linux-g++-64 CONFIG+=debug CONFIG+=qml_debug
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf:
@@ -364,6 +367,7 @@ Makefile: ../diglot-weave-gui/diglot-weave-gui.pro /usr/lib/x86_64-linux-gnu/qt5
 ../diglot-weave-gui/diglot-weave-gui.pro:
 /usr/lib/x86_64-linux-gnu/libQt5Widgets.prl:
 /usr/lib/x86_64-linux-gnu/libQt5Gui.prl:
+/usr/lib/x86_64-linux-gnu/libQt5Sql.prl:
 /usr/lib/x86_64-linux-gnu/libQt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../diglot-weave-gui/diglot-weave-gui.pro -spec linux-g++-64 CONFIG+=debug CONFIG+=qml_debug
@@ -380,9 +384,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../diglot-weave-gui/mainwindow.h ../diglot-weave-gui/dictrecord.h ../diglot-weave-gui/formattedtext.h ../diglot-weave-gui/dialogs/aboutdialog.h ../diglot-weave-gui/dialogs/dictdialog.h ../diglot-weave-gui/dialogs/logindialog.h ../diglot-weave-gui/dialogs/registerdialog.h ../diglot-weave-gui/dialogs/errordialog.h ../diglot-weave-gui/utils.h ../diglot-weave-gui/usertextedit.h ../diglot-weave-gui/dialogs/loadtextdialog.h ../diglot-weave-gui/userdictionary.h ../diglot-weave-gui/useraccount.h ../diglot-weave-gui/dialogs/textparamsdialog.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../diglot-weave-gui/main.cpp ../diglot-weave-gui/mainwindow.cpp ../diglot-weave-gui/dictrecord.cpp ../diglot-weave-gui/formattedtext.cpp ../diglot-weave-gui/dialogs/aboutdialog.cpp ../diglot-weave-gui/dialogs/dictdialog.cpp ../diglot-weave-gui/dialogs/logindialog.cpp ../diglot-weave-gui/dialogs/registerdialog.cpp ../diglot-weave-gui/dialogs/errordialog.cpp ../diglot-weave-gui/utils.cpp ../diglot-weave-gui/dialogs/loadtextdialog.cpp ../diglot-weave-gui/usertextedit.cpp ../diglot-weave-gui/userdictionary.cpp ../diglot-weave-gui/useraccount.cpp ../diglot-weave-gui/dialogs/textparamsdialog.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../diglot-weave-gui/mainwindow.ui ../diglot-weave-gui/dialogs/aboutdialog.ui ../diglot-weave-gui/dialogs/dictdialog.ui ../diglot-weave-gui/dialogs/logindialog.ui ../diglot-weave-gui/dialogs/registerdialog.ui ../diglot-weave-gui/dialogs/errordialog.ui ../diglot-weave-gui/dialogs/loadtextdialog.ui ../diglot-weave-gui/dialogs/textparamsdialog.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../diglot-weave-gui/mainwindow.h ../diglot-weave-gui/dictrecord.h ../diglot-weave-gui/formattedtext.h ../diglot-weave-gui/dialogs/aboutdialog.h ../diglot-weave-gui/dialogs/dictdialog.h ../diglot-weave-gui/dialogs/logindialog.h ../diglot-weave-gui/dialogs/registerdialog.h ../diglot-weave-gui/utils.h ../diglot-weave-gui/usertextedit.h ../diglot-weave-gui/dialogs/loadtextdialog.h ../diglot-weave-gui/userdictionary.h ../diglot-weave-gui/useraccount.h ../diglot-weave-gui/dialogs/textparamsdialog.h ../diglot-weave-gui/wordrecord.h ../diglot-weave-gui/database_handler.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../diglot-weave-gui/main.cpp ../diglot-weave-gui/mainwindow.cpp ../diglot-weave-gui/dictrecord.cpp ../diglot-weave-gui/formattedtext.cpp ../diglot-weave-gui/dialogs/aboutdialog.cpp ../diglot-weave-gui/dialogs/dictdialog.cpp ../diglot-weave-gui/dialogs/logindialog.cpp ../diglot-weave-gui/dialogs/registerdialog.cpp ../diglot-weave-gui/utils.cpp ../diglot-weave-gui/dialogs/loadtextdialog.cpp ../diglot-weave-gui/usertextedit.cpp ../diglot-weave-gui/userdictionary.cpp ../diglot-weave-gui/useraccount.cpp ../diglot-weave-gui/dialogs/textparamsdialog.cpp ../diglot-weave-gui/wordrecord.cpp ../diglot-weave-gui/database_handler.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../diglot-weave-gui/mainwindow.ui ../diglot-weave-gui/dialogs/aboutdialog.ui ../diglot-weave-gui/dialogs/dictdialog.ui ../diglot-weave-gui/dialogs/logindialog.ui ../diglot-weave-gui/dialogs/registerdialog.ui ../diglot-weave-gui/dialogs/loadtextdialog.ui ../diglot-weave-gui/dialogs/textparamsdialog.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -414,101 +418,113 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -m64 -pipe -g -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_aboutdialog.cpp moc_dictdialog.cpp moc_logindialog.cpp moc_registerdialog.cpp moc_errordialog.cpp moc_loadtextdialog.cpp moc_textparamsdialog.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_aboutdialog.cpp moc_dictdialog.cpp moc_logindialog.cpp moc_registerdialog.cpp moc_loadtextdialog.cpp moc_textparamsdialog.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_aboutdialog.cpp moc_dictdialog.cpp moc_logindialog.cpp moc_registerdialog.cpp moc_errordialog.cpp moc_loadtextdialog.cpp moc_textparamsdialog.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_aboutdialog.cpp moc_dictdialog.cpp moc_logindialog.cpp moc_registerdialog.cpp moc_loadtextdialog.cpp moc_textparamsdialog.cpp
 moc_mainwindow.cpp: ../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/wordrecord.h \
 		../diglot-weave-gui/usertextedit.h \
 		../diglot-weave-gui/useraccount.h \
+		../diglot-weave-gui/database_handler.h \
 		../diglot-weave-gui/mainwindow.h \
 		moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/thehemen/Документы/diglot-weave-gui/diglot-weave-gui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../diglot-weave-gui/mainwindow.h -o moc_mainwindow.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/thehemen/Документы/diglotweave/diglot-weave-gui/diglot-weave-gui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../diglot-weave-gui/mainwindow.h -o moc_mainwindow.cpp
 
 moc_aboutdialog.cpp: ui_aboutdialog.h \
 		../diglot-weave-gui/dialogs/aboutdialog.h \
 		moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/thehemen/Документы/diglot-weave-gui/diglot-weave-gui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../diglot-weave-gui/dialogs/aboutdialog.h -o moc_aboutdialog.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/thehemen/Документы/diglotweave/diglot-weave-gui/diglot-weave-gui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../diglot-weave-gui/dialogs/aboutdialog.h -o moc_aboutdialog.cpp
 
 moc_dictdialog.cpp: ui_dictdialog.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/utils.h \
 		../diglot-weave-gui/useraccount.h \
+		../diglot-weave-gui/database_handler.h \
+		../diglot-weave-gui/formattedtext.h \
+		../diglot-weave-gui/wordrecord.h \
+		../diglot-weave-gui/usertextedit.h \
 		../diglot-weave-gui/dialogs/dictdialog.h \
 		moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/thehemen/Документы/diglot-weave-gui/diglot-weave-gui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../diglot-weave-gui/dialogs/dictdialog.h -o moc_dictdialog.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/thehemen/Документы/diglotweave/diglot-weave-gui/diglot-weave-gui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../diglot-weave-gui/dialogs/dictdialog.h -o moc_dictdialog.cpp
 
 moc_logindialog.cpp: ui_logindialog.h \
 		../diglot-weave-gui/useraccount.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
 		../diglot-weave-gui/utils.h \
-		../diglot-weave-gui/dialogs/errordialog.h \
-		ui_errordialog.h \
+		../diglot-weave-gui/database_handler.h \
+		../diglot-weave-gui/mainwindow.h \
+		../diglot-weave-gui/formattedtext.h \
+		../diglot-weave-gui/wordrecord.h \
+		../diglot-weave-gui/usertextedit.h \
 		../diglot-weave-gui/dialogs/logindialog.h \
 		moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/thehemen/Документы/diglot-weave-gui/diglot-weave-gui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../diglot-weave-gui/dialogs/logindialog.h -o moc_logindialog.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/thehemen/Документы/diglotweave/diglot-weave-gui/diglot-weave-gui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../diglot-weave-gui/dialogs/logindialog.h -o moc_logindialog.cpp
 
 moc_registerdialog.cpp: ui_registerdialog.h \
 		../diglot-weave-gui/utils.h \
-		../diglot-weave-gui/dialogs/errordialog.h \
-		ui_errordialog.h \
-		../diglot-weave-gui/mainwindow.h \
-		../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/mainwindow.h \
+		../diglot-weave-gui/formattedtext.h \
+		../diglot-weave-gui/wordrecord.h \
 		../diglot-weave-gui/usertextedit.h \
 		../diglot-weave-gui/useraccount.h \
+		../diglot-weave-gui/database_handler.h \
 		../diglot-weave-gui/dialogs/registerdialog.h \
 		moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/thehemen/Документы/diglot-weave-gui/diglot-weave-gui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../diglot-weave-gui/dialogs/registerdialog.h -o moc_registerdialog.cpp
-
-moc_errordialog.cpp: ui_errordialog.h \
-		../diglot-weave-gui/dialogs/errordialog.h \
-		moc_predefs.h \
-		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/thehemen/Документы/diglot-weave-gui/diglot-weave-gui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../diglot-weave-gui/dialogs/errordialog.h -o moc_errordialog.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/thehemen/Документы/diglotweave/diglot-weave-gui/diglot-weave-gui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../diglot-weave-gui/dialogs/registerdialog.h -o moc_registerdialog.cpp
 
 moc_loadtextdialog.cpp: ui_loadtextdialog.h \
-		../diglot-weave-gui/mainwindow.h \
-		../diglot-weave-gui/formattedtext.h \
+		../diglot-weave-gui/useraccount.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
-		../diglot-weave-gui/usertextedit.h \
-		../diglot-weave-gui/useraccount.h \
 		../diglot-weave-gui/utils.h \
-		../diglot-weave-gui/dialogs/errordialog.h \
-		ui_errordialog.h \
+		../diglot-weave-gui/database_handler.h \
+		../diglot-weave-gui/formattedtext.h \
+		../diglot-weave-gui/wordrecord.h \
+		../diglot-weave-gui/usertextedit.h \
 		../diglot-weave-gui/dialogs/loadtextdialog.h \
 		moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/thehemen/Документы/diglot-weave-gui/diglot-weave-gui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../diglot-weave-gui/dialogs/loadtextdialog.h -o moc_loadtextdialog.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/thehemen/Документы/diglotweave/diglot-weave-gui/diglot-weave-gui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../diglot-weave-gui/dialogs/loadtextdialog.h -o moc_loadtextdialog.cpp
 
-moc_textparamsdialog.cpp: ../diglot-weave-gui/useraccount.h \
+moc_textparamsdialog.cpp: ui_textparamsdialog.h \
+		../diglot-weave-gui/useraccount.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/database_handler.h \
+		../diglot-weave-gui/formattedtext.h \
+		../diglot-weave-gui/wordrecord.h \
+		../diglot-weave-gui/usertextedit.h \
 		../diglot-weave-gui/dialogs/textparamsdialog.h \
 		moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/thehemen/Документы/diglot-weave-gui/diglot-weave-gui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../diglot-weave-gui/dialogs/textparamsdialog.h -o moc_textparamsdialog.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/thehemen/Документы/diglotweave/diglot-weave-gui/diglot-weave-gui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../diglot-weave-gui/dialogs/textparamsdialog.h -o moc_textparamsdialog.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_aboutdialog.h ui_dictdialog.h ui_logindialog.h ui_registerdialog.h ui_errordialog.h ui_loadtextdialog.h ui_textparamsdialog.h
+compiler_uic_make_all: ui_mainwindow.h ui_aboutdialog.h ui_dictdialog.h ui_logindialog.h ui_registerdialog.h ui_loadtextdialog.h ui_textparamsdialog.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_aboutdialog.h ui_dictdialog.h ui_logindialog.h ui_registerdialog.h ui_errordialog.h ui_loadtextdialog.h ui_textparamsdialog.h
+	-$(DEL_FILE) ui_mainwindow.h ui_aboutdialog.h ui_dictdialog.h ui_logindialog.h ui_registerdialog.h ui_loadtextdialog.h ui_textparamsdialog.h
 ui_mainwindow.h: ../diglot-weave-gui/mainwindow.ui \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/uic \
 		../diglot-weave-gui/usertextedit.h \
 		../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/userdictionary.h \
-		../diglot-weave-gui/dictrecord.h
+		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/wordrecord.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic ../diglot-weave-gui/mainwindow.ui -o ui_mainwindow.h
 
 ui_aboutdialog.h: ../diglot-weave-gui/dialogs/aboutdialog.ui \
@@ -526,10 +542,6 @@ ui_logindialog.h: ../diglot-weave-gui/dialogs/logindialog.ui \
 ui_registerdialog.h: ../diglot-weave-gui/dialogs/registerdialog.ui \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/uic
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic ../diglot-weave-gui/dialogs/registerdialog.ui -o ui_registerdialog.h
-
-ui_errordialog.h: ../diglot-weave-gui/dialogs/errordialog.ui \
-		/usr/lib/x86_64-linux-gnu/qt5/bin/uic
-	/usr/lib/x86_64-linux-gnu/qt5/bin/uic ../diglot-weave-gui/dialogs/errordialog.ui -o ui_errordialog.h
 
 ui_loadtextdialog.h: ../diglot-weave-gui/dialogs/loadtextdialog.ui \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/uic
@@ -553,30 +565,35 @@ main.o: ../diglot-weave-gui/main.cpp ../diglot-weave-gui/mainwindow.h \
 		../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/wordrecord.h \
 		../diglot-weave-gui/usertextedit.h \
-		../diglot-weave-gui/useraccount.h
+		../diglot-weave-gui/useraccount.h \
+		../diglot-weave-gui/database_handler.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../diglot-weave-gui/main.cpp
 
 mainwindow.o: ../diglot-weave-gui/mainwindow.cpp ../diglot-weave-gui/mainwindow.h \
 		../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/wordrecord.h \
 		../diglot-weave-gui/usertextedit.h \
 		../diglot-weave-gui/useraccount.h \
+		../diglot-weave-gui/database_handler.h \
 		ui_mainwindow.h \
 		../diglot-weave-gui/dialogs/dictdialog.h \
 		ui_dictdialog.h \
 		../diglot-weave-gui/dialogs/logindialog.h \
 		ui_logindialog.h \
-		../diglot-weave-gui/utils.h \
-		../diglot-weave-gui/dialogs/errordialog.h \
-		ui_errordialog.h \
 		../diglot-weave-gui/dialogs/registerdialog.h \
 		ui_registerdialog.h \
 		../diglot-weave-gui/dialogs/loadtextdialog.h \
 		ui_loadtextdialog.h \
 		../diglot-weave-gui/dialogs/aboutdialog.h \
-		ui_aboutdialog.h
+		ui_aboutdialog.h \
+		../diglot-weave-gui/dialogs/textparamsdialog.h \
+		ui_textparamsdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../diglot-weave-gui/mainwindow.cpp
 
 dictrecord.o: ../diglot-weave-gui/dictrecord.cpp ../diglot-weave-gui/dictrecord.h
@@ -584,7 +601,9 @@ dictrecord.o: ../diglot-weave-gui/dictrecord.cpp ../diglot-weave-gui/dictrecord.
 
 formattedtext.o: ../diglot-weave-gui/formattedtext.cpp ../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/userdictionary.h \
-		../diglot-weave-gui/dictrecord.h
+		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/wordrecord.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o formattedtext.o ../diglot-weave-gui/formattedtext.cpp
 
 aboutdialog.o: ../diglot-weave-gui/dialogs/aboutdialog.cpp ../diglot-weave-gui/dialogs/aboutdialog.h \
@@ -595,7 +614,12 @@ dictdialog.o: ../diglot-weave-gui/dialogs/dictdialog.cpp ../diglot-weave-gui/dia
 		ui_dictdialog.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
-		../diglot-weave-gui/useraccount.h
+		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/useraccount.h \
+		../diglot-weave-gui/database_handler.h \
+		../diglot-weave-gui/formattedtext.h \
+		../diglot-weave-gui/wordrecord.h \
+		../diglot-weave-gui/usertextedit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dictdialog.o ../diglot-weave-gui/dialogs/dictdialog.cpp
 
 logindialog.o: ../diglot-weave-gui/dialogs/logindialog.cpp ../diglot-weave-gui/dialogs/logindialog.h \
@@ -604,65 +628,81 @@ logindialog.o: ../diglot-weave-gui/dialogs/logindialog.cpp ../diglot-weave-gui/d
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
 		../diglot-weave-gui/utils.h \
-		../diglot-weave-gui/dialogs/errordialog.h \
-		ui_errordialog.h
+		../diglot-weave-gui/database_handler.h \
+		../diglot-weave-gui/mainwindow.h \
+		../diglot-weave-gui/formattedtext.h \
+		../diglot-weave-gui/wordrecord.h \
+		../diglot-weave-gui/usertextedit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o logindialog.o ../diglot-weave-gui/dialogs/logindialog.cpp
 
 registerdialog.o: ../diglot-weave-gui/dialogs/registerdialog.cpp ../diglot-weave-gui/dialogs/registerdialog.h \
 		ui_registerdialog.h \
 		../diglot-weave-gui/utils.h \
-		../diglot-weave-gui/dialogs/errordialog.h \
-		ui_errordialog.h \
-		../diglot-weave-gui/mainwindow.h \
-		../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/mainwindow.h \
+		../diglot-weave-gui/formattedtext.h \
+		../diglot-weave-gui/wordrecord.h \
 		../diglot-weave-gui/usertextedit.h \
-		../diglot-weave-gui/useraccount.h
+		../diglot-weave-gui/useraccount.h \
+		../diglot-weave-gui/database_handler.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o registerdialog.o ../diglot-weave-gui/dialogs/registerdialog.cpp
 
-errordialog.o: ../diglot-weave-gui/dialogs/errordialog.cpp ../diglot-weave-gui/dialogs/errordialog.h \
-		ui_errordialog.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o errordialog.o ../diglot-weave-gui/dialogs/errordialog.cpp
-
 utils.o: ../diglot-weave-gui/utils.cpp ../diglot-weave-gui/utils.h \
-		../diglot-weave-gui/dialogs/errordialog.h \
-		ui_errordialog.h
+		../diglot-weave-gui/userdictionary.h \
+		../diglot-weave-gui/dictrecord.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o utils.o ../diglot-weave-gui/utils.cpp
 
 loadtextdialog.o: ../diglot-weave-gui/dialogs/loadtextdialog.cpp ../diglot-weave-gui/dialogs/loadtextdialog.h \
 		ui_loadtextdialog.h \
-		../diglot-weave-gui/mainwindow.h \
-		../diglot-weave-gui/formattedtext.h \
+		../diglot-weave-gui/useraccount.h \
 		../diglot-weave-gui/userdictionary.h \
 		../diglot-weave-gui/dictrecord.h \
-		../diglot-weave-gui/usertextedit.h \
-		../diglot-weave-gui/useraccount.h \
 		../diglot-weave-gui/utils.h \
-		../diglot-weave-gui/dialogs/errordialog.h \
-		ui_errordialog.h
+		../diglot-weave-gui/database_handler.h \
+		../diglot-weave-gui/formattedtext.h \
+		../diglot-weave-gui/wordrecord.h \
+		../diglot-weave-gui/usertextedit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o loadtextdialog.o ../diglot-weave-gui/dialogs/loadtextdialog.cpp
 
 usertextedit.o: ../diglot-weave-gui/usertextedit.cpp ../diglot-weave-gui/usertextedit.h \
 		../diglot-weave-gui/formattedtext.h \
 		../diglot-weave-gui/userdictionary.h \
-		../diglot-weave-gui/dictrecord.h
+		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/wordrecord.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o usertextedit.o ../diglot-weave-gui/usertextedit.cpp
 
 userdictionary.o: ../diglot-weave-gui/userdictionary.cpp ../diglot-weave-gui/userdictionary.h \
-		../diglot-weave-gui/dictrecord.h
+		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/utils.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o userdictionary.o ../diglot-weave-gui/userdictionary.cpp
 
 useraccount.o: ../diglot-weave-gui/useraccount.cpp ../diglot-weave-gui/useraccount.h \
 		../diglot-weave-gui/userdictionary.h \
-		../diglot-weave-gui/dictrecord.h
+		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/database_handler.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o useraccount.o ../diglot-weave-gui/useraccount.cpp
 
 textparamsdialog.o: ../diglot-weave-gui/dialogs/textparamsdialog.cpp ../diglot-weave-gui/dialogs/textparamsdialog.h \
+		ui_textparamsdialog.h \
 		../diglot-weave-gui/useraccount.h \
 		../diglot-weave-gui/userdictionary.h \
-		../diglot-weave-gui/dictrecord.h
+		../diglot-weave-gui/dictrecord.h \
+		../diglot-weave-gui/utils.h \
+		../diglot-weave-gui/database_handler.h \
+		../diglot-weave-gui/formattedtext.h \
+		../diglot-weave-gui/wordrecord.h \
+		../diglot-weave-gui/usertextedit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o textparamsdialog.o ../diglot-weave-gui/dialogs/textparamsdialog.cpp
+
+wordrecord.o: ../diglot-weave-gui/wordrecord.cpp ../diglot-weave-gui/wordrecord.h \
+		../diglot-weave-gui/dictrecord.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o wordrecord.o ../diglot-weave-gui/wordrecord.cpp
+
+database_handler.o: ../diglot-weave-gui/database_handler.cpp ../diglot-weave-gui/database_handler.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o database_handler.o ../diglot-weave-gui/database_handler.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
@@ -678,9 +718,6 @@ moc_logindialog.o: moc_logindialog.cpp
 
 moc_registerdialog.o: moc_registerdialog.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_registerdialog.o moc_registerdialog.cpp
-
-moc_errordialog.o: moc_errordialog.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_errordialog.o moc_errordialog.cpp
 
 moc_loadtextdialog.o: moc_loadtextdialog.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_loadtextdialog.o moc_loadtextdialog.cpp

@@ -42,14 +42,16 @@ public:
     QAction *action_load_text_by_file;
     QAction *action_load_text;
     QAction *action_change_params;
+    QAction *action;
+    QAction *action_restore_pass;
     QWidget *centralwidget;
     QHBoxLayout *horizontalLayout;
     UserTextEdit *mainTextEdit;
     QMenuBar *menubar;
     QMenu *menu_file;
-    QMenu *menu_user;
     QMenu *menu_about;
     QMenu *menu_text;
+    QMenu *menu;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -87,6 +89,10 @@ public:
         action_load_text->setObjectName(QStringLiteral("action_load_text"));
         action_change_params = new QAction(MainWindow);
         action_change_params->setObjectName(QStringLiteral("action_change_params"));
+        action = new QAction(MainWindow);
+        action->setObjectName(QStringLiteral("action"));
+        action_restore_pass = new QAction(MainWindow);
+        action_restore_pass->setObjectName(QStringLiteral("action_restore_pass"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         centralwidget->setEnabled(true);
@@ -104,28 +110,28 @@ public:
         menubar->setGeometry(QRect(0, 0, 855, 22));
         menu_file = new QMenu(menubar);
         menu_file->setObjectName(QStringLiteral("menu_file"));
-        menu_user = new QMenu(menubar);
-        menu_user->setObjectName(QStringLiteral("menu_user"));
         menu_about = new QMenu(menubar);
         menu_about->setObjectName(QStringLiteral("menu_about"));
         menu_text = new QMenu(menubar);
         menu_text->setObjectName(QStringLiteral("menu_text"));
+        menu = new QMenu(menubar);
+        menu->setObjectName(QStringLiteral("menu"));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QStringLiteral("statusbar"));
         MainWindow->setStatusBar(statusbar);
 
         menubar->addAction(menu_file->menuAction());
-        menubar->addAction(menu_user->menuAction());
+        menubar->addAction(menu->menuAction());
         menubar->addAction(menu_text->menuAction());
         menubar->addAction(menu_about->menuAction());
         menu_file->addAction(action_exit);
-        menu_user->addAction(action_login);
-        menu_user->addAction(action_reg);
-        menu_user->addAction(action_dict);
         menu_about->addAction(action_about);
+        menu_text->addAction(action_dict);
         menu_text->addAction(action_load_text);
         menu_text->addAction(action_change_params);
+        menu->addAction(action_login);
+        menu->addAction(action_reg);
 
         retranslateUi(MainWindow);
 
@@ -138,27 +144,29 @@ public:
         action_about->setText(QApplication::translate("MainWindow", "\320\236 \320\277\321\200\320\276\320\263\321\200\320\260\320\274\320\274\320\265", Q_NULLPTR));
         action_2->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \321\202\320\265\320\272\321\201\321\202", Q_NULLPTR));
         action_3->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \321\201\320\273\320\276\320\262\320\260\321\200\321\214", Q_NULLPTR));
-        action_exit->setText(QApplication::translate("MainWindow", "\320\222\321\213\321\205\320\276\320\264", Q_NULLPTR));
+        action_exit->setText(QApplication::translate("MainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214 \320\270 \320\262\321\213\320\271\321\202\320\270", Q_NULLPTR));
         action_reg->setText(QApplication::translate("MainWindow", "\320\240\320\265\320\263\320\270\321\201\321\202\321\200\320\260\321\206\320\270\321\217", Q_NULLPTR));
         action_8->setText(QApplication::translate("MainWindow", "\320\241\320\276\320\267\320\264\320\260\321\202\321\214 \321\201\320\273\320\276\320\262\320\260\321\200\321\214", Q_NULLPTR));
         action_9->setText(QApplication::translate("MainWindow", "\320\240\320\265\320\264\320\260\320\272\321\202\320\270\321\200\320\276\320\262\320\260\321\202\321\214 \321\201\320\273\320\276\320\262\320\260\321\200\321\214", Q_NULLPTR));
         action_freq_change->setText(QApplication::translate("MainWindow", "\320\230\320\267\320\274\320\265\320\275\320\270\321\202\321\214 \321\207\320\260\321\201\321\202\320\276\321\202\321\203 \320\267\320\260\320\274\320\265\320\275\321\213 \321\202\320\265\320\272\321\201\321\202\320\260", Q_NULLPTR));
         action_dict_load->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \321\201\320\273\320\276\320\262\320\260\321\200\321\214", Q_NULLPTR));
-        action_dict->setText(QApplication::translate("MainWindow", "\320\241\320\273\320\276\320\262\320\260\321\200\320\270", Q_NULLPTR));
+        action_dict->setText(QApplication::translate("MainWindow", "\320\240\320\265\320\264\320\260\320\272\321\202\320\270\321\200\320\276\320\262\320\260\321\202\321\214 \321\201\320\273\320\276\320\262\320\260\321\200\320\270", Q_NULLPTR));
         action_login->setText(QApplication::translate("MainWindow", "\320\220\320\262\321\202\320\276\321\200\320\270\320\267\320\260\321\206\320\270\321\217", Q_NULLPTR));
         action_load_text_by_buffer->setText(QApplication::translate("MainWindow", "\320\230\320\267 \320\261\321\203\321\204\320\265\321\200\320\260 \320\276\320\261\320\274\320\265\320\275\320\260", Q_NULLPTR));
         action_load_text_by_file->setText(QApplication::translate("MainWindow", "\320\230\320\267 \321\202\320\265\320\272\321\201\321\202\320\276\320\262\320\276\320\263\320\276 \321\204\320\260\320\271\320\273\320\260", Q_NULLPTR));
         action_load_text->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \321\202\320\265\320\272\321\201\321\202", Q_NULLPTR));
         action_change_params->setText(QApplication::translate("MainWindow", "\320\230\320\267\320\274\320\265\320\275\320\270\321\202\321\214 \320\277\320\260\321\200\320\260\320\274\320\265\321\202\321\200\321\213 \321\202\320\265\320\272\321\201\321\202\320\260", Q_NULLPTR));
+        action->setText(QApplication::translate("MainWindow", "\320\240\320\265\320\264\320\260\320\272\321\202\320\270\321\200\320\276\320\262\320\260\321\202\321\214 \321\201\320\273\320\276\320\262\320\260\321\200\320\270", Q_NULLPTR));
+        action_restore_pass->setText(QApplication::translate("MainWindow", "\320\222\320\276\321\201\321\201\321\202\320\260\320\275\320\276\320\262\320\273\320\265\320\275\320\270\320\265 \320\277\320\260\321\200\320\276\320\273\321\217", Q_NULLPTR));
         mainTextEdit->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"justify\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", Q_NULLPTR));
         menu_file->setTitle(QApplication::translate("MainWindow", "\320\244\320\260\320\271\320\273", Q_NULLPTR));
-        menu_user->setTitle(QApplication::translate("MainWindow", "\320\237\320\276\320\273\321\214\320\267\320\276\320\262\320\260\321\202\320\265\320\273\321\214", Q_NULLPTR));
         menu_about->setTitle(QApplication::translate("MainWindow", "\320\241\320\277\321\200\320\260\320\262\320\272\320\260", Q_NULLPTR));
-        menu_text->setTitle(QApplication::translate("MainWindow", "\320\242\320\265\320\272\321\201\321\202", Q_NULLPTR));
+        menu_text->setTitle(QApplication::translate("MainWindow", "\320\237\320\276\320\273\321\214\320\267\320\276\320\262\320\260\321\202\320\265\320\273\321\214", Q_NULLPTR));
+        menu->setTitle(QApplication::translate("MainWindow", "\320\220\320\272\320\272\320\260\321\203\320\275\321\202", Q_NULLPTR));
     } // retranslateUi
 
 };

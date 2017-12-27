@@ -15,3 +15,8 @@ QString DictRecord::GetTranslate()
 {
     return this->translate;
 }
+
+QString DictRecord::ModifyTranslate(QString translate_new)
+{
+    this->translate = translate_new;
+}
