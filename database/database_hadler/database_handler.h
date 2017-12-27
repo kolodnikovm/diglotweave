@@ -28,7 +28,7 @@ public:
     void register_new_user(QString, QString);
 
     // get list of pairs (name, id) of specific user's dictionaries
-    QList<QPair<QString, QString>> get_dictionarylist_by_username(QString);
+    QList<QPair<QString, int>> get_dictionarylist_by_username(QString);
 
     // get list of words and translations of specific dictionary
     QList<QPair<QString, QString>> get_dictionary_by_dict_id(int);
