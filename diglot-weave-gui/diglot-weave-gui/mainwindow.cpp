@@ -19,6 +19,9 @@ MainWindow::MainWindow(QWidget *parent) :
     this->formattedText = new FormattedText();
     this->userAccount = UserAccount();
 
+    this->dbHandler = new database_handler();
+    this->dbHandler->connect_to_database();
+
     show_login_dialog();
 
     connect(ui->action_login, SIGNAL(triggered()), this, SLOT(show_login_dialog()));
@@ -37,7 +40,7 @@ void MainWindow::show_login_dialog()
 {
     if(!this->userAccount.logged_in)
     {
-        LoginDialog* loginDialog = new LoginDialog(this, &(this->userAccount));
+        LoginDialog* loginDialog = new LoginDialog(this, &(this->userAccount), this->dbHandler);
         loginDialog->show();
     }
     else
@@ -48,7 +51,7 @@ void MainWindow::show_register_dialog()
 {
     if(!this->userAccount.logged_in)
     {
-        RegisterDialog* registerDialog = new RegisterDialog(this);
+        RegisterDialog* registerDialog = new RegisterDialog(this, this->dbHandler);
         registerDialog->show();
     }
     else

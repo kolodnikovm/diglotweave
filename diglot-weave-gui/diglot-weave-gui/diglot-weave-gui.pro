@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT += core gui
+QT += sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -39,7 +40,8 @@ SOURCES += \
     userdictionary.cpp \
     useraccount.cpp \
     dialogs/textparamsdialog.cpp \
-    wordrecord.cpp
+    wordrecord.cpp \
+    database_handler.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -55,7 +57,8 @@ HEADERS += \
     userdictionary.h \
     useraccount.h \
     dialogs/textparamsdialog.h \
-    wordrecord.h
+    wordrecord.h \
+    database_handler.h
 
 FORMS += \
         mainwindow.ui \

@@ -2,31 +2,21 @@
 
 UserAccount::UserAccount()
 {
+    this->account_id = -1;
     this->logged_in = false;
     this->registered = false;
 
     this->dict_id = -1;
 }
 
-UserAccount::UserAccount(int account_id, QString login, QString password)
+void UserAccount::LogIn(int account_id, QString login, QString password)
 {
     this->account_id = account_id;
     this->login = login;
     this->password = password;
 
-    this->logged_in = false;
+    this->logged_in = true;
     this->registered = true;
-}
-
-bool UserAccount::LogIn(QString login, QString password)
-{
-    if(this->login.compare(login) == 0 and this->password.compare(password) == 0)
-    {
-        this->logged_in = true;
-        return true;
-    }
-    else
-        return false;
 }
 
 void UserAccount::CreateDictionary(QString dict_name)

@@ -23,9 +23,8 @@ public:
     bool registered;
 
     UserAccount();
-    UserAccount(int account_id, QString login, QString password);
 
-    bool LogIn(QString login, QString password);
+    void LogIn(int account_id, QString login, QString password);
 
     void CreateDictionary(QString dict_name);
     void MakeGlobalDictionary();
