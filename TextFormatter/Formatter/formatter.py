@@ -3,7 +3,7 @@
 import re
 import csv
 import pymorphy2 as pm2
-from .wordinflector.inflector import Inflector
+from .Wordinflector.inflector import Inflector
 
 
 class TextFormatter:

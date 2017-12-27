@@ -2,7 +2,7 @@ import csv
 import logging
 import os.path
 import argparse
-from formatter.formatter import TextFormatter
+from Formatter.formatter import TextFormatter
 
 class Manager:
     def __init__(self, text_path, vocab_path):
