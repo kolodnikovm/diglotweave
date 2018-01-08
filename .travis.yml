@@ -9,4 +9,5 @@ install:
 script:
   python ./TextFormatter/main.py --test
   coverage run ./TextFormatter/main.py --test
+script:
   coverage html
