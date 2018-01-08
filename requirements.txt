@@ -1,1 +1,2 @@
 pymorphy2==0.8
+coverage==4.4.2
