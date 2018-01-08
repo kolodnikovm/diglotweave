@@ -207,7 +207,7 @@ public:
         removeDictButton->setText(QApplication::translate("DictDialog", "\320\243\320\264\320\260\320\273\320\270\321\202\321\214 \321\201\320\273\320\276\320\262\320\260\321\200\321\214", Q_NULLPTR));
         dictWordEdit->setPlaceholderText(QApplication::translate("DictDialog", "\321\201\320\273\320\276\320\262\320\276", Q_NULLPTR));
         dictTranslateEdit->setPlaceholderText(QApplication::translate("DictDialog", "\320\277\320\265\321\200\320\265\320\262\320\276\320\264", Q_NULLPTR));
-        addWordButton->setText(QApplication::translate("DictDialog", "\320\230\320\267\320\274\320\265\320\275\320\270\321\202\321\214 \321\201\320\273\320\276\320\262\320\276", Q_NULLPTR));
+        addWordButton->setText(QApplication::translate("DictDialog", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214/\320\270\320\267\320\274\320\265\320\275\320\270\321\202\321\214", Q_NULLPTR));
         removeWordButton->setText(QApplication::translate("DictDialog", "\320\243\320\264\320\260\320\273\320\270\321\202\321\214 \320\262\321\213\320\261\321\200\320\260\320\275\320\275\320\276\320\265 \321\201\320\273\320\276\320\262\320\276", Q_NULLPTR));
         closeDictButton->setText(QApplication::translate("DictDialog", "\320\227\320\260\320\272\321\200\321\213\321\202\321\214", Q_NULLPTR));
     } // retranslateUi
