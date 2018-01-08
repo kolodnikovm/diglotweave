@@ -6,9 +6,9 @@ virtualenv:
     system_site_package: true
 install: 
   pip install -r requirements.txt
-script:
+before_script:
   cd ./TextFormatter/
 script:
   coverage run main.py --test
-script:
+after_script:
   coverage report
