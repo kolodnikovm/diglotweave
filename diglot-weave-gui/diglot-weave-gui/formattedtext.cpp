@@ -88,10 +88,11 @@ void FormattedText::FormatText()
 
             if(word_now == word_init)
             {
-                this->word_list[i].SetTranslate(word_translate);
-
                 if(utils::get_doubled_random() < this->change_freq)
+                {
+                    this->word_list[i].SetTranslate(word_translate);
                     highlighted = true;
+                }
 
                 break;
             }
