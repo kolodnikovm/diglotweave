@@ -9,4 +9,6 @@ install:
 script:
   coverage run ./TextFormatter/main.py --test
 script:
+  ls -la
+script:
   coverage report
