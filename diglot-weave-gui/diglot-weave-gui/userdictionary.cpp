@@ -56,11 +56,6 @@ QString UserDictionary::operator [](const QString word_value)
     return "NONE";
 }
 
-int UserDictionary::size()
-{
-    return this->words.length();
-}
-
 bool UserDictionary::CheckDuplicates(bool output_error)
 {
     QMap<int, bool> dupl;

@@ -20,7 +20,10 @@ public:
     UserDictionary(int dict_id, QString dict_name);
     void add_word(QString word, QString translate);
     void remove_word(QString word, QString translate);
-    int size();
+    int size() const {return words.length();}
+
+    const QList<DictRecord>& GetListWords() const {return words;}
+
     DictRecord& operator[] (const int index);
     DictRecord& GetRecord(int index);
     QString operator[] (const QString word);
