@@ -19,7 +19,7 @@ private:
     UserDictionary global_dictionary;
     database_handler* db_handler;
 
-    int dict_id;
+    int dict_id = -1;
 
 public:
     bool logged_in;

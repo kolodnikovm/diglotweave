@@ -32,8 +32,8 @@ TextParamsDialog::TextParamsDialog( QWidget * parent, UserAccount* user_account,
 }
 
 void TextParamsDialog::check_checkbox(bool checked)
-{
-    ui.dictComboBox->setEnabled(checked);
+{    
+    ui.dictComboBox->setEnabled(!checked);
 }
 
 void TextParamsDialog::change_params()

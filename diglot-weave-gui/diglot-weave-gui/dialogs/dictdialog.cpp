@@ -163,6 +163,9 @@ void DictDialog::remove_word()
     int dict_index = ui.dictList->currentRow();
     int current_row = ui.dictContentTable->currentRow();
 
+    if(current_row == -1)
+        return;
+
     QString word = ui.dictContentTable->item(current_row, 0)->text();
     QString translate = ui.dictContentTable->item(current_row, 1)->text();
 
