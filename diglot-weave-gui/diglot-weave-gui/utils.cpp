@@ -218,7 +218,7 @@ QList<QPair<QString, QString>> utils::dict_load(QString out_dict_name)
 
 void utils::run_python(QString in_text, QString in_dict, QString out_dict)
 {
-    QString program = "./run_python.sh";
+    QString program = "run_python.bat";
     QStringList arguments;
     arguments << in_text << in_dict << out_dict;
 
