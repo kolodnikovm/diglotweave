@@ -255,3 +255,9 @@ void UserAccount::DeleteDictionary(int dict_id)
 {
     this->dictionaries.removeAt(dict_id);
 }
+
+const QList<UserDictionary> * UserAccount::getDictList()
+{
+    return &dictionaries;
+}
+

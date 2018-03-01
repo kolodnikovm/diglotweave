@@ -172,14 +172,11 @@ void DictDialog::remove_word()
 
 void DictDialog::rewrite_dict_list()
 {
-    int dict_count = this->user_account->GetDictionariesCount();
-
     ui.dictList->clear();
 
-    for(int dict_index = 0; dict_index < dict_count; ++dict_index)
+    foreach (UserDictionary dict, *(this->user_account->getDictList()))
     {
-        QString dict_name = this->user_account->GetDictionary(dict_index)->dict_name;
-        ui.dictList->addItem(dict_name);
+        ui.dictList->addItem(dict.dict_name);
     }
 }
 

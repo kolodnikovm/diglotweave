@@ -9,12 +9,26 @@ TextParamsDialog::TextParamsDialog( QWidget * parent, UserAccount* user_account,
     this->usertextedit = usertextedit;
 
     ui.dictComboBox->clear();
-    for(int i = 0; i < this->user_account->GetDictionariesCount(); ++i)
-        ui.dictComboBox->addItem(this->user_account->GetDictionary(i)->dict_name);
 
     connect(ui.globalDictCheckBox, SIGNAL(clicked(bool)), this, SLOT(check_checkbox(bool)));
     connect(ui.saveParamsButton, SIGNAL (released()), this, SLOT (change_params()));
     connect(ui.cancelParamsButton, SIGNAL (released()), this, SLOT (close()));
+
+    foreach (UserDictionary dict, *(this->user_account->getDictList()))
+    {
+        ui.dictComboBox->addItem(dict.dict_name);
+    }
+
+    if(this->user_account->GetCurDictId() == -1)
+    {
+        ui.dictComboBox->setEnabled(false);
+        ui.globalDictCheckBox->setChecked(true);
+    }
+    else
+    {
+        ui.dictComboBox->setEnabled(true);
+        ui.globalDictCheckBox->setChecked(false);
+    }
 }
 
 void TextParamsDialog::check_checkbox(bool checked)

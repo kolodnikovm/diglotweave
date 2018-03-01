@@ -28,6 +28,8 @@ public:
     UserAccount();
     UserAccount(database_handler* db_handler);
 
+    const QList<UserDictionary> * getDictList();
+
     void LogIn(int account_id, QString login, QString password);
     void LoadData();
     void SaveData();
