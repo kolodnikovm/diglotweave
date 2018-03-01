@@ -205,7 +205,7 @@ void UserAccount::MakeGlobalDictionary()
     this->global_dictionary.CheckDuplicates();
 }
 
-UserDictionary* UserAccount::GetDictionary()
+UserDictionary* UserAccount::GetCurDictionary()
 {
     if(this->dict_id != -1)
         return this->GetDictionary(this->dict_id);
@@ -215,10 +215,10 @@ UserDictionary* UserAccount::GetDictionary()
 
 UserDictionary* UserAccount::GetDictionary(int dict_id)
 {
-    if(this->dict_id >= 0 && this->dict_id < this->dictionaries.size())
+    if(this->dict_id < this->dictionaries.size())
         return &(this->dictionaries[dict_id]);
     else
-        return 0;
+        return nullptr;
 }
 
 UserDictionary* UserAccount::GetDictionaryByOwnID(int dict_id)

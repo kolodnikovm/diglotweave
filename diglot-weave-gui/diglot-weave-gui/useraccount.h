@@ -37,7 +37,8 @@ public:
     void CreateDictionary(QString dict_name, int dict_id = -1);
     void CheckDuplicates(bool output_error = false);
     void MakeGlobalDictionary();
-    UserDictionary* GetDictionary();
+    UserDictionary* GetCurDictionary();
+    int GetCurDictId() {return dict_id;}
     UserDictionary* GetDictionary(int dict_id);
     UserDictionary* GetDictionaryByOwnID(int own_dict_id);
     void SetDictionary(int dict_id);

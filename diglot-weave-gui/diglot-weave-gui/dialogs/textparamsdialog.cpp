@@ -47,15 +47,13 @@ void TextParamsDialog::change_params()
     {
         int dict_id = ui.dictComboBox->currentIndex();
         this->user_account->SetDictionary(dict_id);
-        dict_now = this->user_account->GetDictionary();
     }
     else
     {
         this->user_account->SetDictionary(-1);
         this->user_account->MakeGlobalDictionary();
-        dict_now = this->user_account->GetDictionary();
     }
-
+    dict_now = this->user_account->GetCurDictionary();
     this->formatted_text->SetDict(dict_now);
     this->usertextedit->SetFormattedText(this->formatted_text);
 

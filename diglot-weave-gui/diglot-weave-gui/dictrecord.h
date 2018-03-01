@@ -11,9 +11,9 @@ protected:
 public:
     DictRecord(QString word, QString translate);
 
-    QString GetWord();
-    QString GetTranslate();
-    QString ModifyTranslate(QString translate_new);
+    QString GetWord() const;
+    QString GetTranslate() const;
+    void ModifyTranslate(QString translate_new);
 };
 
 #endif // WORDPAIR_H

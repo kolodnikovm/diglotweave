@@ -190,25 +190,26 @@ void DictDialog::rewrite_word_table()
 
     if(dict_index >= 0 && dict_index < this->user_account->GetDictionariesCount())
     {
-        int word_count = this->user_account->GetDictionary(dict_index)->size();
+        const UserDictionary &selDict = user_account->getDictList()->at(dict_index);
+        int word_count = selDict.size();
         ui.dictContentTable->setRowCount(word_count);
 
-        for(int word_index = 0; word_index < word_count; ++word_index)
+        const QList<DictRecord> wordList = selDict.GetListWords();
+
+        for(int i = 0; i < wordList.size(); ++i)
         {
-            UserDictionary user_dictionary = *(this->user_account->GetDictionary(dict_index));
-
-            QString word_value = user_dictionary[word_index].GetWord();
+            QString word_value = wordList.at(i).GetWord();
             QTableWidgetItem *word_item = new QTableWidgetItem(word_value);
-            ui.dictContentTable->setItem(word_index, 0, word_item);
+            ui.dictContentTable->setItem(i, 0, word_item);
 
-            QString translate_value = user_dictionary[word_index].GetTranslate();
+            QString translate_value = wordList.at(i).GetTranslate();
             QTableWidgetItem *translate_item = new QTableWidgetItem(translate_value);
-            ui.dictContentTable->setItem(word_index, 1, translate_item);
+            ui.dictContentTable->setItem(i, 1, translate_item);
         }
 
-        if(this->user_account->GetDictionary() == this->user_account->GetDictionary(dict_index))
+        if(this->user_account->GetCurDictionary() == this->user_account->GetDictionary(dict_index))
         {
-            this->formatted_text->SetDict(this->user_account->GetDictionary());
+            this->formatted_text->SetDict(this->user_account->GetCurDictionary());
             this->usertextedit->SetFormattedText(this->formatted_text);
         }
     }

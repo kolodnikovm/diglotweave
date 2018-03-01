@@ -6,17 +6,17 @@ DictRecord::DictRecord(QString word, QString translate)
     this->translate = translate;
 }
 
-QString DictRecord::GetWord()
+QString DictRecord::GetWord() const
 {
     return this->word;
 }
 
-QString DictRecord::GetTranslate()
+QString DictRecord::GetTranslate() const
 {
     return this->translate;
 }
 
-QString DictRecord::ModifyTranslate(QString translate_new)
+void DictRecord::ModifyTranslate(QString translate_new)
 {
     this->translate = translate_new;
 }

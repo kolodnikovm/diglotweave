@@ -36,7 +36,7 @@ void LoadTextDialog::load_text()
 {
     QString text_contents = ui.loadTextEdit->toPlainText();
 
-    UserDictionary* dict_now = this->user_account->GetDictionary();
+    UserDictionary* dict_now = this->user_account->GetCurDictionary();
     if(dict_now != 0)
         this->formatted_text->SetDict(dict_now);
 
