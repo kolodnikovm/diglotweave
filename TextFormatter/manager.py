@@ -12,7 +12,7 @@ class Manager:
         self.VOCAB = {}
 
         try:
-            with open(self.vocab_path, 'r', newline='', encoding='utf-8-sig') as vocab:
+            with open(self.vocab_path, 'r', newline='', encoding='cp1251') as vocab:
                 for row in csv.reader(vocab):
                     try:
                         self.VOCAB.update({row[0]:row[1]})

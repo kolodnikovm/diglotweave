@@ -10,7 +10,7 @@ class TextFormatter:
     """ TextFormatter documentation """
 
     def __init__(self, text, vocab):
-        self.text_file = open(text, "r", encoding='utf-8')
+        self.text_file = open(text, "r", encoding='cp1251')
         self.vocab = vocab
         self.morph = pm2.MorphAnalyzer()
         self.inflector = Inflector()
@@ -63,7 +63,7 @@ class TextFormatter:
     def save_to_csv(self, path_name):
         """ Вызывает generate_words_to_swap() и сохраняет результат работы функции в csv """
 
-        with open(path_name, 'w+', newline='', encoding='utf-8') as result_dict:
+        with open(path_name, 'w+', newline='', encoding='cp1251') as result_dict:
             writer = csv.writer(result_dict)
             words_to_swap = self.generate_words_to_swap()
             print(words_to_swap)
